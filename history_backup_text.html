@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📜 Fakta Sejarah 10 April</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pacifico&family=VT323&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; }
+        body { min-height: 100%; background: #0d0117; font-family: 'VT323', monospace; color: #e8d5f5; overflow-x: hidden; }
+
+        .vegas-bg { position: fixed; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(233, 69, 96, 0.15) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(254, 202, 87, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 20% 90%, rgba(255, 159, 243, 0.1) 0%, transparent 50%), linear-gradient(180deg, #0d0117, #1a0a2e, #0d0117); z-index: 0; }
+        .vegas-bg::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.04) 0px, rgba(0, 0, 0, 0.04) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 100; }
+
+        .vapor-grid { position: fixed; bottom: 0; left: 0; width: 100%; height: 40%; background-image: linear-gradient(rgba(72, 219, 251, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(72, 219, 251, 0.2) 1px, transparent 1px); background-size: 50px 50px; perspective: 500px; transform: perspective(300px) rotateX(60deg); transform-origin: center bottom; animation: gridMove 4s linear infinite; z-index: 1; mask-image: linear-gradient(to top, black 30%, transparent 100%); }
+        @keyframes gridMove { from { background-position: 0 0; } to { background-position: 0 50px; } }
+
+        .marquee-header { position: relative; z-index: 10; text-align: center; padding: 40px 20px 20px; }
+        .neon-date { font-family: 'Press Start 2P', monospace; font-size: 32px; color: #feca57; text-shadow: 0 0 10px #feca57, 0 0 30px #feca57; animation: neonFlicker 3s ease-in-out infinite; letter-spacing: 4px; }
+        @keyframes neonFlicker { 0%, 100% { opacity: 1; } 92% { opacity: 1; } 93% { opacity: 0.7; } 94% { opacity: 1; } 96% { opacity: 0.8; } 97% { opacity: 1; } }
+
+        .neon-subtitle { font-family: 'Pacifico', cursive; font-size: 20px; color: #ff9ff3; margin-top: 15px; text-shadow: 0 0 15px rgba(255, 159, 243, 0.6); }
+        .intro-text { font-size: 24px; color: #e8d5f5; max-width: 650px; margin: 20px auto 10px; line-height: 1.6; text-wrap: balance; }
+        .intro-highlight { color: #feca57; font-size: 26px; }
+
+        .vegas-divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 25px auto; max-width: 500px; }
+        .vegas-divider .line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, #e94560, transparent); }
+        .vegas-divider .diamond { color: #feca57; font-size: 14px; animation: diamondSpin 4s linear infinite; }
+        @keyframes diamondSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .timeline { position: relative; z-index: 10; max-width: 700px; margin: 0 auto; padding: 10px 20px 40px; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent, #e94560 10%, #feca57 50%, #e94560 90%, transparent); transform: translateX(-50%); }
+
+        .fact-card { position: relative; margin: 0 auto 35px; padding: 25px 30px; background: rgba(26, 10, 46, 0.6); backdrop-filter: blur(10px); border: 2px solid rgba(72, 219, 251, 0.3); border-radius: 12px; width: 90%; max-width: 600px; transition: all 0.4s ease; opacity: 0; transform: translateY(50px); }
+        .fact-card.reveal { opacity: 1; transform: translateY(0); }
+        .fact-card:hover { 
+            border-color: #ff9ff3; 
+            transform: translateY(-10px) scale(1.05) rotate(1deg); 
+            box-shadow: 0 15px 35px rgba(255, 159, 243, 0.4), 0 0 25px rgba(72, 219, 251, 0.2); 
+            background: rgba(46, 20, 80, 0.85);
+        }
+
+        .fact-year { font-family: 'Press Start 2P', monospace; font-size: 14px; color: #feca57; margin-bottom: 8px; }
+        .fact-title { font-family: 'VT323', monospace; font-size: 24px; color: #ff9ff3; margin-bottom: 6px; }
+        .fact-desc { font-size: 20px; color: #c8b6d8; line-height: 1.5; }
+        .fact-fun { margin-top: 12px; font-size: 18px; color: #feca57; font-style: italic; opacity: 0.85; }
+        .fact-emoji { font-size: 32px; float: right; margin-left: 10px; }
+
+        .fact-card.legend-card { border: 3px solid #feca57; background: linear-gradient(135deg, rgba(233, 69, 96, 0.3), rgba(255, 159, 243, 0.3)); box-shadow: 0 0 30px rgba(254, 202, 87, 0.4); }
+
+        .footer-quote { text-align: center; padding: 40px 20px 25px; position: relative; z-index: 10; }
+        .footer-quote p { font-family: 'Pacifico', cursive; font-size: 18px; color: #ff9ff3; text-shadow: 0 0 10px rgba(255, 159, 243, 0.4); opacity: 0.7; }
+
+        .back-section { text-align: center; padding: 20px 20px 50px; position: relative; z-index: 10; }
+        .back-btn { display: inline-block; padding: 14px 35px; font-family: 'Press Start 2P', monospace; font-size: 11px; color: #feca57; background: transparent; border: 2px solid #feca57; text-decoration: none; transition: 0.3s; cursor: pointer; text-transform: uppercase; }
+        .back-btn:hover { background: #feca57; color: #0d0117; box-shadow: 0 0 25px rgba(254, 202, 87, 0.5); }
+
+        .star-bg { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+        .bg-star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle 2s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.9; } }
+
+        /* ===== ROYAL THEME STYLES ===== */
+        .royal-mode .simple-nav {
+            border-bottom: 2px solid #f1c40f !important;
+            box-shadow: 0 4px 25px rgba(241, 196, 15, 0.4), inset 0 -1px 5px rgba(255, 255, 255, 0.2) !important;
+            background: linear-gradient(180deg, #1a0a2e, #2c0b4d) !important;
+        }
+        .royal-crown-icon {
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            font-size: 18px; animation: crownFloat 2s ease-in-out infinite;
+            pointer-events: none; z-index: 2005;
+        }
+        @keyframes crownFloat { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); } 50% { transform: translateX(-50%) translateY(-5px) rotate(5deg); } }
+        .royal-name { color: #f1c40f !important; text-shadow: 0 0 10px #f1c40f !important; font-weight: bold; position: relative; display: inline-block; }
+
+        /* MAGIC CURSOR MODE */
+        .magic-cursor-mode, .magic-cursor-mode * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🪄%3C/text%3E%3C/svg%3E") 4 20, auto !important; }
+        .magic-cursor-mode a:hover, .magic-cursor-mode button:hover { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E✨%3C/text%3E%3C/svg%3E") 12 12, auto !important; }
+        .magic-particle { position: fixed; pointer-events: none; z-index: 10000; font-size: 14px; animation: magicFade 1.2s ease-out forwards; }
+        @keyframes magicFade { 0% { transform: translate(0,0) scale(1); opacity: 0.8; } 100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; } }
+
+        /* NAVBAR */
+        .simple-nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; z-index: 2000; background: linear-gradient(180deg, #0d0520, #1a0a2e); border-bottom: 2px solid #feca57; display: flex; align-items: center; padding: 0 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); }
+        .nav-left { display: flex; align-items: center; gap: 12px; flex: 1; color: #feca57; font-family: 'Press Start 2P', monospace; font-size: 8px; }
+        .nav-status { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00; }
+        #nav-clock { color: #ff9ff3; margin-left: 10px; font-size: 9px; }
+        .nav-center { display: flex; gap: 15px; flex: 2; justify-content: center; }
+        .nav-center a { color: #48dbfb; font-family: 'Press Start 2P', monospace; font-size: 9px; text-decoration: none; transition: 0.3s; padding: 5px; }
+        .nav-center a:hover { color: #ff9ff3; transform: scale(1.1); }
+        .nav-right { display: flex; align-items: center; flex: 1; justify-content: flex-end; gap: 15px; }
+        .nav-coins { display: flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(0,0,0,0.4); border: 1px solid #feca57; border-radius: 20px; text-decoration: none; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #feca57; }
+
+        .marquee-container { width: 200px; overflow: hidden; position: relative; }
+        .marquee-text { display: inline-block; white-space: nowrap; font-family: 'Press Start 2P', monospace; font-size: 7px; color: #ff9ff3; animation: marquee-scroll 12s linear infinite; }
+        @keyframes marquee-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        .bgm-toggle { position: fixed; bottom: 25px; left: 25px; z-index: 2000; background: rgba(26, 10, 46, 0.8); border: 2px solid #feca57; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #feca57; box-shadow: 0 0 15px rgba(254, 202, 87, 0.4); transition: 0.3s; }
+        .bgm-toggle.playing { border-color: #10ac84; }
+
+        .nav-item-dropdown { position: relative; display: flex; align-items: center; }
+        .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(13, 1, 23, 0.95); border: 2px solid #feca57; border-top: none; min-width: 180px; display: none; flex-direction: column; border-radius: 0 0 10px 10px; z-index: 2001; }
+        .nav-item-dropdown:hover .dropdown-menu { display: flex; }
+        .dropdown-link { padding: 12px 15px; text-decoration: none; color: #48dbfb; font-family: 'Press Start 2P', monospace; font-size: 8px; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .dropdown-link:hover { background: rgba(72, 219, 251, 0.15); color: #ff9ff3; }
+
+        @media (max-width: 700px) {
+            .neon-date { font-size: 18px; }
+            .timeline::before { left: 15px; }
+            .fact-card { margin-left: 35px !important; width: calc(100% - 40px); }
+            .marquee-container { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="vegas-bg"></div>
+    <div class="vapor-grid"></div>
+    <div class="star-bg" id="starBg"></div>
+
+    <audio id="bgm" loop preload="auto">
+        <source src="bgm-sejarah.mp3" type="audio/mpeg">
+    </audio>
+    <button class="bgm-toggle" id="bgmToggle" onclick="toggleBgm()">
+        <span id="bgmIcon">🔇</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <div class="simple-nav">
+        <div class="nav-left">
+            <div class="nav-status"></div>
+            <span>Ms. hanawazain (VIP)</span>
+            <div id="nav-clock">00:00:00</div>
+        </div>
+        <div class="nav-center">
+            <a href="birthday.html">🏠 HOME</a>
+            <div class="nav-item-dropdown">
+                <a href="javascript:void(0)">🕹️ ARCADE ▼</a>
+                <div class="dropdown-menu">
+                    <a href="fortune.html" class="dropdown-link">🔮 PERAMAL</a>
+                    <a href="fact.html" class="dropdown-link">💡 FAKTA WOW</a>
+                </div>
+            </div>
+            <a href="slot.html">🎰 SLOT</a>
+            <a href="shop.html">🛒 SHOP</a>
+            <a href="history.html">📜 SEJARAH</a>
+        </div>
+        <div class="nav-right">
+            <div class="marquee-container">
+                <div class="marquee-text">✨ SELAMAT ULANG TAHUN MS. HANAWAZAIN KE-20! 🎂 ✨</div>
+            </div>
+            <a href="slot.html" class="nav-coins">
+                <span>🪙</span>
+                <span id="navCoinDisplay">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="marquee-header" style="margin-top: 50px;">
+        <div class="neon-date">10 APRIL</div>
+        <div class="neon-subtitle">Hari yang Penuh Sejarah!</div>
+        <div class="vegas-divider">
+            <div class="line"></div>
+            <span class="diamond">&#9670;</span>
+            <span class="diamond">&#9733;</span>
+            <span class="diamond">&#9670;</span>
+            <div class="line"></div>
+        </div>
+        <p class="intro-text">
+            Tau nggak sih?<br>
+            <span class="intro-highlight">Hari kamu lahir itu dilalui banyak sejarah dunia yang unik loh!</span><br>
+            Nih, cek fakta-faktanya... kamu terlahir di tanggal yang epic banget!
+        </p>
+    </div>
+
+    <div class="timeline">
+        <div class="fact-card">
+            <span class="fact-emoji">🌋</span>
+            <div class="fact-year">1815</div>
+            <div class="fact-title">Gunung Tambora Meletus!</div>
+            <div class="fact-desc">Gunung Tambora di Indonesia meletus sangat dahsyat, tercatat sebagai letusan vulkanik terbesar dalam sejarah.</div>
+            <div class="fact-fun">"Dampaknya sampai menggetarkan bumi, kaya pesonamu yang menggetarkan hati! 🤭"</div>
+        </div>
+        <div class="fact-card">
+            <span class="fact-emoji">🚢</span>
+            <div class="fact-year">1912</div>
+            <div class="fact-title">RMS Titanic Berlayar!</div>
+            <div class="fact-desc">Kapal termegah dalam sejarah, RMS Titanic, memulai pelayaran perdananya.</div>
+            <div class="fact-fun">"Semoga perjalanan hidupmu selalu berlayar megah dan penuh petualangan seru!"</div>
+        </div>
+        <div class="fact-card">
+            <span class="fact-emoji">📖</span>
+            <div class="fact-year">1925</div>
+            <div class="fact-title">The Great Gatsby Terbit!</div>
+            <div class="fact-desc">Novel legendaris karya F. Scott Fitzgerald dipublikasikan untuk pertama kalinya.</div>
+            <div class="fact-fun">"Sebuah mahakarya abadi dirilis. Pas banget sama aura eleganmu!"</div>
+        </div>
+        <div class="fact-card">
+            <span class="fact-emoji">👑</span>
+            <div class="fact-year">1959</div>
+            <div class="fact-title">Pernikahan Kaisar Jepang!</div>
+            <div class="fact-desc">Putra Mahkota Akihito menikahi Michiko, rakyat biasa pertama yang resmi masuk keluarga kekaisaran.</div>
+            <div class="fact-fun">"Kisah cinta ala negeri dongeng. Memang aura kerajaan melekat kuat di tanggalmu!"</div>
+        </div>
+        <div class="fact-card">
+            <span class="fact-emoji">🎸</span>
+            <div class="fact-year">1970</div>
+            <div class="fact-title">Solo Karir Paul McCartney!</div>
+            <div class="fact-desc">Paul McCartney resmi merilis album solo pertamanya setelah era The Beatles.</div>
+            <div class="fact-fun">"Awal baru yang keren! Setiap tahun adalah lembaran baru untuk terus bersinar."</div>
+        </div>
+        <div class="fact-card">
+            <span class="fact-emoji">🕳️</span>
+            <div class="fact-year">2019</div>
+            <div class="fact-title">Foto Black Hole Pertama!</div>
+            <div class="fact-desc">Para ilmuwan merilis foto pertama Lubang Hitam di pusat galaksi M87.</div>
+            <div class="fact-fun">"Persis kaya pesonamu, menyedot perhatian dan bikin semua orang terpikat!"</div>
+        </div>
+        <div class="fact-card legend-card">
+            <span class="fact-emoji">👑</span>
+            <div class="fact-year" style="color:#ff9ff3">2006</div>
+            <div class="fact-title">THE LEGEND IS BORN!</div>
+            <div class="fact-desc" style="color:#fff; font-size:24px;">Dunia bergetar. Sesosok bintang bernama Ms. hanawazain mendarat di bumi!</div>
+            <div class="fact-fun" style="font-size:22px; color:#48dbfb; opacity:1">"Sejarah demi sejarah berlalu, tapi hari ini tetep jadi momen keren buat kamu."</div>
+        </div>
+    </div>
+
+    <div class="footer-quote">
+        <p>"Kamu nggak cuma lahir di tanggal biasa... kamu lahir di tanggal yang bikin dunia bergetar!"</p>
+    </div>
+
+    <div class="back-section">
+        <a href="birthday.html" class="back-btn">&#9668; Kembali ke Kartu Ulang Tahun</a>
+    </div>
+
+    <script>
+        // Init load
+        window.addEventListener('load', () => {
+            const coins = localStorage.getItem('slotCoins') || '0';
+            const navCoinEl = document.getElementById('navCoinDisplay');
+            if (navCoinEl) navCoinEl.textContent = coins;
+            updateNavClock();
+            revealCards();
+        });
+
+        // Magic Cursor
+        (function initCursor() {
+            const active = localStorage.getItem('isMagicActive') === 'true';
+            const isQueen = localStorage.getItem('isQueenActive') === 'true';
+            if (isQueen) document.documentElement.classList.add('royal-mode');
+
+            if (active) {
+                document.documentElement.classList.add('magic-cursor-mode');
+                document.addEventListener('mousemove', (e) => {
+                    if (Math.random() > 0.6) {
+                        const p = document.createElement('div');
+                        p.className = 'magic-particle';
+                        p.textContent = isQueen ? ['✨','💎','🌟','👑'][Math.floor(Math.random()*4)] : ['✨','⭐','🌟','💫'][Math.floor(Math.random()*4)];
+                        p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+                        p.style.setProperty('--mx', (Math.random()*120-60)+'px');
+                        p.style.setProperty('--my', (Math.random()*120-60)+'px');
+                        const colors = isQueen ? ['#f1c40f', '#fff', '#feca57', '#e67e22'] : ['#fff', '#feca57', '#ff9ff3', '#48dbfb', '#1dd1a1'];
+                        p.style.color = colors[Math.floor(Math.random()*colors.length)];
+                        p.style.textShadow = `0 0 10px ${p.style.color}`;
+                        p.style.fontSize = (10 + Math.random() * 10) + 'px';
+                        document.body.appendChild(p);
+                        setTimeout(() => p.remove(), 1200);
+                    }
+                });
+            }
+        })();
+
+        function syncRoyalIdentity() {
+            const isQueen = localStorage.getItem('isQueenActive') === 'true';
+            const isRing = localStorage.getItem('isRingAccepted') === 'true';
+            const nameEl = document.querySelector('.nav-left span');
+            
+            if (isQueen) {
+                if (nameEl) {
+                    nameEl.innerHTML = `<div class="royal-name"><div class="royal-crown-icon">👑</div>Her Majesty Queen Nanaz has arrived. ${isRing ? '<span style="color:#48dbfb; cursor:pointer; margin-left:10px; font-size:18px;" title="The Owner of Eternal Diamond Ring">💎💍</span>' : ''}</div>`;
+                }
+                document.documentElement.classList.add('royal-mode');
+            } else {
+                if (nameEl) {
+                    nameEl.innerHTML = `Ms. hanawazain (VIP) ${isRing ? '<span style="color:#48dbfb; cursor:pointer; margin-left:10px; font-size:16px;" title="The Owner of Eternal Diamond Ring">💎💍</span>' : ''}`;
+                }
+                document.documentElement.classList.remove('royal-mode');
+            }
+        }
+        function startShootingWish() {
+            setInterval(() => {
+                const wishText = localStorage.getItem('eternalHeartWish');
+                if (!wishText) return;
+
+                const star = document.createElement('div');
+                star.style.cssText = `
+                    position: fixed; top: ${10 + Math.random() * 20}vh; left: -400px;
+                    background: linear-gradient(90deg, rgba(255,71,87,0), rgba(255,71,87,0.85), rgba(255,71,87,0));
+                    color: #fff; font-family: "VT323", monospace; font-size: 18px;
+                    padding: 8px 25px; border-radius: 20px; z-index: 99999;
+                    box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+                    pointer-events: none; white-space: nowrap;
+                    transition: transform 12s linear;
+                    display: flex; align-items: center; gap: 10px;
+                `;
+                star.innerHTML = `<span>🌠</span> <em>"${wishText}"</em>`;
+                document.body.appendChild(star);
+
+                setTimeout(() => {
+                    star.style.transform = `translateX(${window.innerWidth + 800}px)`;
+                }, 100);
+
+                setTimeout(() => {
+                    star.remove();
+                }, 13000);
+            }, 45000);
+        }
+        window.addEventListener('DOMContentLoaded', startShootingWish);
+
+        window.addEventListener('DOMContentLoaded', syncRoyalIdentity);
+
+
+
+        // Clock
+        function updateNavClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            const clockEl = document.getElementById('nav-clock');
+            if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateNavClock, 1000);
+
+        // Reveal effect
+        function revealCards() {
+            const cards = document.querySelectorAll('.fact-card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 50) card.classList.add('reveal');
+            });
+        }
+        window.addEventListener('scroll', revealCards);
+
+        // Star background
+        const starBg = document.getElementById('starBg');
+        for (let i = 0; i < 80; i++) {
+            const s = document.createElement('div');
+            s.className = 'bg-star';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            const size = (1 + Math.random() * 2) + 'px';
+            s.style.width = size; s.style.height = size;
+            s.style.animationDelay = (Math.random() * 3) + 's';
+            starBg.appendChild(s);
+        }
+
+        // BGM
+        const bgm = document.getElementById('bgm');
+        const bgmBtn = document.getElementById('bgmToggle');
+        const bgmIcon = document.getElementById('bgmIcon');
+        let isMuted = localStorage.getItem('bgmMuted') === 'true';
+        bgm.volume = 0.4;
+        bgm.muted = isMuted;
+
+        function updateIcon() {
+            bgmIcon.textContent = (bgm.muted || bgm.paused) ? '🔇' : '🔊';
+            bgmBtn.classList.toggle('playing', !bgm.muted && !bgm.paused);
+        }
+
+        function toggleBgm() {
+            if (bgm.paused) {
+                bgm.muted = false;
+                bgm.play().then(() => { localStorage.setItem('bgmMuted', 'false'); updateIcon(); });
+            } else {
+                bgm.muted = !bgm.muted;
+                localStorage.setItem('bgmMuted', bgm.muted);
+                updateIcon();
+            }
+        }
+
+        if (!isMuted) {
+            bgm.play().catch(() => {
+                document.body.addEventListener('click', () => bgm.play().then(updateIcon), { once: true });
+            });
+        }
+    </script>
+    <script src="magic_global.js"></script>
+</body>
+</html>

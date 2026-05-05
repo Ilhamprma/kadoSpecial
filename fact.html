@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 VIP Gacha Facts - Ms. Hanawazain 👑</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-yellow: #ffff00;
+            --bg-dark: #05010a;
+        }
+
+        .magic-cursor-mode, .magic-cursor-mode * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🪄%3C/text%3E%3C/svg%3E") 4 20, auto !important; }
+        .magic-particle { position: fixed; pointer-events: none; z-index: 10000; font-size: 14px; animation: magicFade 1.2s ease-out forwards; }
+        @keyframes magicFade { 0% { transform: translate(0,0) scale(1); opacity: 0.8; } 100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; } }
+
+        /* ===== ROYAL THEME STYLES ===== */
+        .royal-mode .vegas-nav {
+            border-bottom: 2px solid #f1c40f !important;
+            box-shadow: 0 4px 25px rgba(241, 196, 15, 0.4), inset 0 -1px 5px rgba(255, 255, 255, 0.2) !important;
+            background: linear-gradient(180deg, #1a0a2e, #2c0b4d) !important;
+        }
+        .royal-crown-icon {
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            font-size: 18px; animation: crownFloat 2s ease-in-out infinite;
+            pointer-events: none; z-index: 2005;
+        }
+        @keyframes crownFloat { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); } 50% { transform: translateX(-50%) translateY(-5px) rotate(5deg); } }
+        .royal-name { color: #f1c40f !important; text-shadow: 0 0 10px #f1c40f !important; font-weight: bold; position: relative; display: inline-block; }
+
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(18, 16, 35, 0.8) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(18, 16, 35, 0.8) 2px, transparent 2px);
+            background-size: 50px 50px;
+            color: #fff; font-family: 'VT323', monospace; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            padding-top: 100px;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR (SYNCED) ===== */
+        .vegas-nav {
+            position: fixed; top: 0; left: 0; right: 0; height: 75px; z-index: 1000;
+            background: linear-gradient(180deg, #0d0520, #1a0a2e);
+            border-bottom: 2px solid #cc4400;
+            box-shadow: 0 4px 20px rgba(204,68,0,.25);
+            display: flex; align-items: center; padding: 0 20px;
+        }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .nav-link { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #48dbfb; transition: 0.3s; }
+        .nav-link:hover { transform: scale(1.1); color: #feca57; }
+        .nav-emoji { font-size: 20px; }
+        .nav-text { font-family: 'Press Start 2P'; font-size: 6px; margin-top: 4px; }
+        
+        .nav-center { 
+            position: absolute; left: 50%; transform: translateX(-50%);
+            text-align: center; pointer-events: none;
+        }
+        .welcome-text {
+            font-family: 'Pacifico', cursive; font-size: 20px; color: #feca57;
+            text-shadow: 0 0 10px #feca57; white-space: nowrap;
+        }
+        .marquee-container {
+            width: 150px; overflow: hidden; margin: 0 auto;
+        }
+        .marquee-text {
+            display: inline-block; white-space: nowrap; font-family: 'Press Start 2P';
+            font-size: 7px; color: #ff9ff3; animation: marquee-scroll 12s linear infinite;
+        }
+        @keyframes marquee-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        .nav-right { 
+            margin-left: auto; background: rgba(0,0,0,0.5); 
+            border: 2px solid #feca57; border-radius: 30px; 
+            padding: 8px 15px; font-family: 'Press Start 2P'; font-size: 10px; color: #feca57; 
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        /* ===== GACHA MACHINE ===== */
+        .gacha-container {
+            width: 320px; height: 400px; position: relative;
+            background: linear-gradient(135deg, #e94560, #a02040);
+            border: 8px solid var(--neon-yellow);
+            border-radius: 120px 120px 20px 20px; padding: 40px;
+            display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 0 50px rgba(233, 69, 96, 0.4), inset 0 0 20px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+        .gacha-glass {
+            width: 200px; height: 150px; background: rgba(255,255,255,0.1);
+            border-radius: 80px 80px 10px 10px; border: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .gacha-balls { font-size: 40px; filter: drop-shadow(0 0 10px #fff); }
+        
+        .gacha-knob {
+            width: 80px; height: 80px; background: #1a0a2e; border: 4px solid var(--neon-yellow);
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: var(--neon-yellow); font-family: 'Press Start 2P'; font-size: 8px; transition: 0.5s;
+            margin-top: 40px; box-shadow: 0 4px 0 #888;
+        }
+        .gacha-knob:hover { transform: rotate(180deg); box-shadow: 0 0 20px var(--neon-yellow); }
+        .gacha-knob:active { transform: scale(0.9) rotate(180deg); box-shadow: 0 2px 0 #888; }
+        
+        .fact-card {
+            width: 90%; max-width: 500px; background: rgba(13, 5, 32, 0.95);
+            border: 3px solid var(--neon-blue); border-radius: 20px; padding: 30px;
+            margin-top: 40px; text-align: center; display: none;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: cardPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes cardPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        #factContent { font-size: 28px; font-family: 'VT323'; line-height: 1.4; color: #48dbfb; text-shadow: 0 0 8px #48dbfb; }
+
+        /* SIDE PANEL STYLES */
+        .side-panel {
+            transition: opacity 1s ease, filter 0.4s ease, box-shadow 0.5s ease;
+        }
+        .cat-btn {
+            background: rgba(162, 155, 254, 0.05); 
+            border: 1.5px solid rgba(162, 155, 254, 0.3);
+            color: rgba(255,255,255,0.7); 
+            padding: 10px 15px; 
+            font-family: 'VT323', monospace;
+            font-size: 20px; 
+            text-align: left; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            width: 100%;
+        }
+        .cat-btn span { font-size: 18px; }
+        .cat-btn:hover { 
+            background: rgba(0, 255, 255, 0.1); 
+            border-color: #00ffff; 
+            color: #fff; 
+            transform: translateX(5px); 
+            box-shadow: 0 0 10px rgba(0,255,255,0.1); 
+        }
+        .cat-btn.active { 
+            background: rgba(0, 255, 255, 0.15); 
+            border-color: #00ffff; 
+            color: #00ffff; 
+            text-shadow: 0 0 5px #00ffff; 
+            font-weight: bold; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+        
+        .mini-card {
+            background: rgba(13, 5, 32, 0.6); 
+            border: 1px solid rgba(0, 255, 255, 0.2); 
+            border-radius: 8px;
+            padding: 12px; 
+            font-family: 'VT323', monospace; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .mini-card:hover { 
+            background: rgba(162, 155, 254, 0.15); 
+            border-color: #a29bfe;
+            transform: scale(1.03); 
+            box-shadow: 0 0 15px rgba(162, 155, 254, 0.2);
+        }
+        
+        @keyframes pulseWarn { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+        @keyframes goldFlash {
+            0% { box-shadow: 0 0 20px rgba(241, 196, 15, 0); border-color: rgba(0,255,255,0.3); }
+            50% { box-shadow: 0 0 40px rgba(241, 196, 15, 0.6); border-color: #f1c40f; }
+            100% { box-shadow: 0 0 20px rgba(0,255,255,0.05); border-color: rgba(0,255,255,0.3); }
+        }
+        
+        /* Interactive reaction buttons override */
+        .react-btn {
+            background: rgba(162, 155, 254, 0.05);
+            border: 1.5px solid rgba(162, 155, 254, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        .react-btn:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+            color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+        .react-btn.selected {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+    </style>
+    <script>
+        (function initCursor() {
+            const active = localStorage.getItem('isMagicActive') === 'true';
+            const isQueen = localStorage.getItem('isQueenActive') === 'true';
+            if (isQueen) document.documentElement.classList.add('royal-mode');
+
+            if (active) {
+                document.documentElement.classList.add('magic-cursor-mode');
+                document.addEventListener('mousemove', (e) => {
+                    if (Math.random() > 0.6) {
+                        const p = document.createElement('div');
+                        p.className = 'magic-particle';
+                        p.textContent = isQueen ? ['✨','💎','🌟','👑'][Math.floor(Math.random()*4)] : ['✨','⭐','🌟','💫'][Math.floor(Math.random()*4)];
+                        p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+                        p.style.setProperty('--mx', (Math.random()*120-60)+'px');
+                        p.style.setProperty('--my', (Math.random()*120-60)+'px');
+                        const colors = isQueen ? ['#f1c40f', '#fff', '#feca57', '#e67e22'] : ['#fff', '#feca57', '#ff9ff3', '#48dbfb', '#1dd1a1'];
+                        p.style.color = colors[Math.floor(Math.random()*colors.length)];
+                        p.style.textShadow = `0 0 10px ${p.style.color}`;
+                        p.style.fontSize = (10 + Math.random() * 10) + 'px';
+                        document.body.appendChild(p);
+                        setTimeout(() => p.remove(), 1200);
+                    }
+                });
+            }
+
+            // Royal Click Burst — spawns gold particles on every click when Queen Mode is active
+            if (isQueen) {
+                document.addEventListener('click', (e) => {
+                    const emojis = ['👑', '✨', '💎', '🌟', '⚜️'];
+                    const colors = ['#f1c40f', '#fff', '#feca57', '#e67e22'];
+                    for (let i = 0; i < 12; i++) {
+                        const p = document.createElement('div');
+                        p.className = 'magic-particle';
+                        p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        p.style.left = e.clientX + 'px';
+                        p.style.top = e.clientY + 'px';
+                        const angle = (Math.PI * 2 * i) / 12;
+                        const distance = 40 + Math.random() * 80;
+                        p.style.setProperty('--mx', Math.cos(angle) * distance + 'px');
+                        p.style.setProperty('--my', Math.sin(angle) * distance + 'px');
+                        p.style.color = colors[Math.floor(Math.random() * colors.length)];
+                        p.style.textShadow = `0 0 10px ${p.style.color}`;
+                        p.style.fontSize = (12 + Math.random() * 12) + 'px';
+                        document.body.appendChild(p);
+                        setTimeout(() => p.remove(), 1200);
+                    }
+                });
+            }
+        })();
+
+        function syncRoyalIdentity() {
+            const isQueen = localStorage.getItem('isQueenActive') === 'true';
+            const isRing = localStorage.getItem('isRingAccepted') === 'true';
+            const nameEl = document.querySelector('.welcome-text');
+            
+            if (isQueen) {
+                if (nameEl) {
+                    nameEl.innerHTML = `<div class="royal-name"><div class="royal-crown-icon">👑</div>Her Majesty Queen Nanaz has arrived. ${isRing ? '<span style="color:#48dbfb; cursor:pointer; margin-left:10px; font-size:18px;" title="The Owner of Eternal Diamond Ring">💎💍</span>' : ''}</div>`;
+                }
+                document.documentElement.classList.add('royal-mode');
+            } else {
+                if (nameEl) {
+                    nameEl.innerHTML = `✨ Welcome Nanaz!!! 💖 ${isRing ? '<span style="color:#48dbfb; cursor:pointer; margin-left:10px; font-size:16px;" title="The Owner of Eternal Diamond Ring">💎💍</span>' : ''}`;
+                }
+                document.documentElement.classList.remove('royal-mode');
+            }
+        }
+        function startShootingWish() {
+            setInterval(() => {
+                const wishText = localStorage.getItem('eternalHeartWish');
+                if (!wishText) return;
+
+                const star = document.createElement('div');
+                star.style.cssText = `
+                    position: fixed; top: ${10 + Math.random() * 20}vh; left: -400px;
+                    background: linear-gradient(90deg, rgba(255,71,87,0), rgba(255,71,87,0.85), rgba(255,71,87,0));
+                    color: #fff; font-family: "VT323", monospace; font-size: 18px;
+                    padding: 8px 25px; border-radius: 20px; z-index: 99999;
+                    box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+                    pointer-events: none; white-space: nowrap;
+                    transition: transform 12s linear;
+                    display: flex; align-items: center; gap: 10px;
+                `;
+                star.innerHTML = `<span>🌠</span> <em>"${wishText}"</em>`;
+                document.body.appendChild(star);
+
+                setTimeout(() => {
+                    star.style.transform = `translateX(${window.innerWidth + 800}px)`;
+                }, 100);
+
+                setTimeout(() => {
+                    star.remove();
+                }, 13000);
+            }, 45000);
+        }
+        window.addEventListener('DOMContentLoaded', startShootingWish);
+
+        window.addEventListener('DOMContentLoaded', syncRoyalIdentity);
+
+
+    </script>
+</head>
+<body>
+    <nav class="vegas-nav">
+        <div class="nav-left">
+            <a href="birthday.html" class="nav-link"><span class="nav-emoji">🏠</span><span class="nav-text">HOME</span></a>
+            <a href="slot.html" class="nav-link"><span class="nav-emoji">🎰</span><span class="nav-text">SLOT</span></a>
+            <a href="shop.html" class="nav-link"><span class="nav-emoji">🛒</span><span class="nav-text">SHOP</span></a>
+            <a href="history.html" class="nav-link"><span class="nav-emoji">📜</span><span class="nav-text">HIST</span></a>
+        </div>
+        <div class="nav-center">
+            <div class="welcome-text">✨ Welcome Nanaz!!! 💖</div>
+            <div class="marquee-container">
+                <div class="marquee-text">FAKTA WOW UNTUK TUAN PUTRI ✨ SEMUA HAL KEREN TERJADI DI TANGGALMU! ✨</div>
+            </div>
+        </div>
+        <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+            <button id="bgmToggleBtn" onclick="toggleBGM()" style="background: rgba(162,155,254,0.1); border: 1.5px solid #a29bfe; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #a29bfe; font-size: 16px; transition: 0.3s; box-shadow: 0 0 10px rgba(162,155,254,0.2);">🎵</button>
+            <span>🪙 <span id="coinDisplay">0</span></span>
+        </div>
+    </nav>
+
+    <!-- Sci-fi Tech Grid Layer -->
+    <div style="position: absolute; inset: 0; background-image: 
+        radial-gradient(circle at 50% 50%, rgba(10, 5, 20, 0.4) 0%, rgba(5, 1, 10, 0.9) 80%),
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 100% 100%, 40px 40px, 40px 40px; pointer-events: none; z-index: 10;">
+    </div>
+    
+    <!-- Vignette with deep glowing corners -->
+    <div id="vignette" style="position: fixed; inset: 0; background: radial-gradient(circle, transparent 20%, rgba(5,1,15,0.95) 85%); pointer-events: none; z-index: 15; opacity: 0.7; transition: opacity 0.8s;"></div>
+
+    <!-- WORKSPACE WRAPPER -->
+    <div style="display: flex; width: 100%; max-width: 1300px; justify-content: center; align-items: flex-start; gap: 30px; margin-top: 20px; padding: 0 20px; z-index: 20; position: relative;">
+        
+        <!-- LEFT PANEL (Knowledge Control Panel) -->
+        <div id="leftPanel" class="side-panel" style="width: 260px; background: rgba(10, 5, 25, 0.7); border: 1.5px solid rgba(0, 255, 255, 0.3); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px); box-shadow: 0 0 20px rgba(0,255,255,0.05); opacity: 0; transition: all 1s ease 0.5s; flex-shrink: 0;">
+            
+            <!-- 1. CATEGORY SELECTOR -->
+            <h4 style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a29bfe; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Category Selector</h4>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px;">
+                <button class="cat-btn active" onclick="setCategory('all', this)"><span>🌐</span> All</button>
+                <button class="cat-btn" onclick="setCategory('space', this)"><span>🌌</span> Space</button>
+                <button class="cat-btn" onclick="setCategory('animal', this)"><span>🐾</span> Animal</button>
+                <button class="cat-btn" onclick="setCategory('human', this)"><span>🧠</span> Human</button>
+                <button class="cat-btn" onclick="setCategory('nature', this)"><span>🌿</span> Nature</button>
+                <button class="cat-btn" onclick="setCategory('random', this)"><span>🎲</span> Random</button>
+            </div>
+
+            <!-- 2. DISCOVERY STATS -->
+            <h4 style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a29bfe; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Discovery Stats</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: 'VT323', monospace; font-size: 18px; color: #fff; margin-bottom: 30px;">
+                <div style="background: rgba(162,155,254,0.1); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(162,155,254,0.2);">
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase;">Total Facts</div>
+                    <span id="statTotal" style="font-size: 24px; color: #00ffff; text-shadow: 0 0 5px #00ffff;">0</span>
+                </div>
+                <div style="background: rgba(162,155,254,0.1); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(162,155,254,0.2);">
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase;">Rare Found</div>
+                    <span id="statRare" style="font-size: 24px; color: #a29bfe; text-shadow: 0 0 5px #a29bfe;">0</span>
+                </div>
+                <div style="background: rgba(162,155,254,0.1); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(162,155,254,0.2);">
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase;">Epic Found</div>
+                    <span id="statEpic" style="font-size: 24px; color: #f1c40f; text-shadow: 0 0 5px #f1c40f;">0</span>
+                </div>
+                <div style="background: rgba(162,155,254,0.1); padding: 8px; border-radius: 6px; text-align: center; border: 1px solid rgba(162,155,254,0.2);">
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase;">Streak</div>
+                    <span id="statStreak" style="font-size: 24px; color: #ff4757; text-shadow: 0 0 5px #ff4757;">0</span>
+                </div>
+            </div>
+
+            <!-- 3. ENERGY STATUS -->
+            <h4 style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a29bfe; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase;">Energy Status</h4>
+            <div style="font-family: 'VT323', monospace; font-size: 18px; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.3); padding: 12px; border-radius: 6px; border: 1px solid rgba(0,255,255,0.1);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                    <span>Cost:</span> <span style="color: #00ffff;">50 🪙</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                    <span>Attempts left:</span> <span id="attemptsLeft" style="color: #fff;">0</span>
+                </div>
+                <div id="energyWarn" style="font-size: 14px; color: #ff4757; text-align: center; margin-top: 10px; display: none; animation: pulseWarn 1s infinite alternate;">
+                    ⚠️ LOW ENERGY RESERVE
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTER: MAIN REACTOR CONTAINER -->
+        <div id="centerMachine" style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 450px; flex-grow: 1;">
+            
+            <!-- Premium HUD Quantum Reactor Control -->
+            <div id="reactorControl" style="position: relative; width: 260px; height: 260px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onclick="handleReactorSpin()">
+                
+                <!-- Orbit Ring 1 (HUD) -->
+                <div id="ringOuter" style="position: absolute; inset: 0; border: 2px dashed rgba(0, 255, 255, 0.3); border-radius: 50%; box-shadow: 0 0 15px rgba(0, 255, 255, 0.1); animation: rotateRing 25s linear infinite;"></div>
+                
+                <!-- Orbit Ring 2 (Tech Accents) -->
+                <div id="ringMiddle" style="position: absolute; inset: 25px; border: 1.5px solid rgba(162, 155, 254, 0.4); border-radius: 50%; border-right-color: transparent; border-left-color: transparent; animation: rotateRingRev 15s linear infinite;"></div>
+                
+                <!-- Orbit Ring 3 (Inner Fast) -->
+                <div id="ringInner" style="position: absolute; inset: 50px; border: 1px dotted rgba(0, 255, 255, 0.5); border-radius: 50%; animation: rotateRing 8s linear infinite;"></div>
+                
+                <!-- Quantum Glass Core -->
+                <div id="reactorCore" style="position: absolute; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(255,255,255,1) 0%, rgba(0, 255, 255, 0.9) 30%, rgba(13, 5, 30, 1) 90%); box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), 0 0 80px rgba(162, 155, 254, 0.4), inset 0 0 20px rgba(255,255,255,0.4); animation: breathingCore 4s infinite alternate ease-in-out; transition: 0.6s ease; transform-style: preserve-3d;">
+                    <div style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 180deg, rgba(162, 155, 254, 0.6), rgba(0, 255, 255, 0.6), rgba(162, 155, 254, 0.6)); filter: blur(4px); animation: rotateRing 4s linear infinite; opacity: 0.8;"></div>
+                </div>
+
+                <!-- Central Scanning Ray -->
+                <div id="scanningRay" style="position: absolute; width: 2px; height: 120px; background: linear-gradient(to bottom, transparent, rgba(0,255,255,0.8), transparent); top: 50%; left: 50%; transform-origin: top center; transform: rotate(0deg); opacity: 0.3; animation: scanRay 4s infinite linear;"></div>
+
+                <!-- Particle bounds -->
+                <div id="reactorParticles" style="position: absolute; inset: -40px; pointer-events: none;"></div>
+            </div>
+
+            <!-- Custom Notification/Overlay instead of Browser Alert -->
+            <div id="customToast" style="position: fixed; top: 120px; left: 50%; transform: translate(-50%, -50px); opacity: 0; background: rgba(13, 5, 32, 0.9); border: 1.5px solid #00ffff; border-radius: 8px; padding: 10px 25px; color: #00ffff; font-family: 'VT323', monospace; font-size: 20px; text-shadow: 0 0 5px #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); z-index: 1000; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none;">
+                Merespon: 😲
+            </div>
+
+            <!-- Cyber Diagnostics UI -->
+            <div id="reactorStatus" style="margin-top: 35px; font-family: 'VT323', monospace; font-size: 26px; color: #a29bfe; text-shadow: 0 0 10px rgba(162, 155, 254, 0.6); letter-spacing: 2.5px; text-align: center; text-transform: uppercase;">
+                Tekan untuk menemukan fakta tersembunyi
+            </div>
+            <div id="priceStatus" style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: rgba(0, 255, 255, 0.5); margin-top: 8px; letter-spacing: 1px; text-shadow: 0 0 5px rgba(0,255,255,0.3);">
+                ENERGY COST: 50 🪙
+            </div>
+
+            <!-- FACT CARD (Holographic Cyberpunk Layout) -->
+            <div id="factCardReveal" style="display: none; width: 95%; max-width: 520px; background: linear-gradient(145deg, rgba(13, 5, 32, 0.9), rgba(5, 1, 15, 0.95)); border: 2px solid #00ffff; border-radius: 4px; padding: 30px; margin-top: 40px; backdrop-filter: blur(20px); position: relative; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.05); transition: all 0.5s ease; cursor: default; clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);">
+                
+                <!-- Tech corner decals -->
+                <div style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; border-top: 2px solid #00ffff; border-left: 2px solid #00ffff;"></div>
+                <div style="position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; border-bottom: 2px solid #00ffff; border-right: 2px solid #00ffff;"></div>
+
+                <!-- Rarity Badge -->
+                <div id="rarityBadge" style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-family: 'Press Start 2P', monospace; font-size: 9px; padding: 6px 16px; background: #05010a; border: 1px solid #00ffff; letter-spacing: 1.5px; text-shadow: 0 0 5px #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);">
+                    COMMON FACT
+                </div>
+                
+                <p id="factMainText" style="font-family: 'VT323', monospace; font-size: 26px; line-height: 1.5; color: #fff; margin-top: 20px; margin-bottom: 30px; letter-spacing: 1.5px; text-shadow: 0 0 5px rgba(255,255,255,0.2);">
+                    Membuka fakta baru...
+                </p>
+
+                <!-- Reactions (Premium multi-state buttons) -->
+                <div style="display: flex; gap: 18px; margin-bottom: 25px; width: 100%; justify-content: center;">
+                    <button class="react-btn" onclick="reactToFact('😲', 'Wow!')">😲 Wow</button>
+                    <button class="react-btn" onclick="reactToFact('🤔', 'Baru tau!')">🤔 Baru tau</button>
+                    <button class="react-btn" onclick="reactToFact('😐', 'Biasa aja.')">😐 Biasa aja</button>
+                </div>
+
+                <!-- CTA -->
+                <button onclick="resetReactor()" style="background: rgba(0, 255, 255, 0.05); border: 1px solid rgba(0, 255, 255, 0.6); color: #00ffff; font-family: 'VT323', monospace; font-size: 20px; padding: 6px 25px; border-radius: 4px; cursor: pointer; transition: 0.3s; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 0 10px rgba(0,255,255,0.2);">
+                    Re-Analyze Core
+                </button>
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL (Archive & Reaction Panel) -->
+        <div id="rightPanel" class="side-panel" style="width: 260px; background: rgba(10, 5, 25, 0.7); border: 1.5px solid rgba(0, 255, 255, 0.3); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px); box-shadow: 0 0 20px rgba(0,255,255,0.05); opacity: 0; transition: all 1s ease 0.5s; flex-shrink: 0;">
+            
+            <!-- 1. RECENT DISCOVERIES -->
+            <h4 style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a29bfe; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Recent Discoveries</h4>
+            <div id="recentList" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+                <p style="font-family: 'VT323', monospace; font-size: 16px; color: rgba(255,255,255,0.4); text-align: center; padding: 20px 0;">No logs retrieved yet.</p>
+            </div>
+
+            <!-- 2. RARITY SCANNER -->
+            <h4 style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a29bfe; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">Rarity Probability</h4>
+            <div style="font-family: 'VT323', monospace; font-size: 16px; color: #fff; margin-bottom: 30px; display: flex; flex-direction: column; gap: 8px;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Common</span><span>75%</span></div>
+                    <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                        <div style="width: 75%; height: 100%; background: #00ffff; box-shadow: 0 0 10px #00ffff;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Rare</span><span>20%</span></div>
+                    <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                        <div style="width: 20%; height: 100%; background: #a29bfe; box-shadow: 0 0 10px #a29bfe;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Epic</span><span>5%</span></div>
+                    <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                        <div style="width: 5%; height: 100%; background: #f1c40f; box-shadow: 0 0 10px #f1c40f;"></div>
+                    </div>
+                </div>
+                <p style="font-family: 'VT323', monospace; font-size: 14px; color: rgba(241, 196, 15, 0.6); margin-top: 5px; text-align: center; letter-spacing: 1px;">"Epic facts are unstable anomalies"</p>
+            </div>
+
+            <!-- 3. REACTION LOG -->
+            <h4 style="font-family: 'Press Start 2P', monospace; font-size: 8px; color: #a29bfe; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">System Reaction Log</h4>
+            <div style="font-family: 'VT323', monospace; font-size: 18px; color: #fff; background: rgba(162,155,254,0.05); border: 1px dashed rgba(162,155,254,0.3); border-radius: 6px; padding: 15px; text-align: center;">
+                <div id="logReactionEmoji" style="font-size: 32px; margin-bottom: 5px;">🤖</div>
+                <p id="logReactionText" style="color: rgba(255,255,255,0.6); line-height: 1.3;">Menunggu respons subjek terhadap data...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Enhanced CSS Animations -->
+    <style>
+        @keyframes rotateRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes rotateRingRev { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
+        @keyframes breathingCore { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.06); opacity: 1; } }
+        @keyframes scanRay { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shakeScreen {
+            0%, 100% { transform: translate(0, 0); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-3px, 3px); }
+            20%, 40%, 60%, 80% { transform: translate(3px, -3px); }
+        }
+        .react-btn {
+            background: rgba(162, 155, 254, 0.05); border: 1px solid rgba(162, 155, 254, 0.4); color: #a29bfe;
+            padding: 8px 18px; font-family: 'VT323', monospace; font-size: 18px; border-radius: 4px; cursor: pointer; transition: 0.3s;
+            box-shadow: inset 0 0 10px rgba(162, 155, 254, 0.05);
+        }
+        .react-btn:hover { background: rgba(0, 255, 255, 0.15); border-color: #00ffff; color: #fff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,255,255,0.2); }
+    </style>
+
+    <!-- High-Fidelity Audio Setup -->
+    <audio id="bgmReactor" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" loop></audio>
+    <audio id="sfxDraw" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+    <audio id="sfxClick" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+    <audio id="sfxReveal" src="https://assets.mixkit.co/active_storage/sfx/1432/1432-preview.mp3"></audio>
+
+    <script>
+        const facts = [
+          { id: 1, text: "Gurita punya 3 jantung, dan dua di antaranya berhenti berdetak saat mereka berenang.", category: "animal", rarity: "common" },
+          { id: 2, text: "Lumba-lumba punya suara unik seperti nama untuk memanggil satu sama lain.", category: "animal", rarity: "rare" },
+          { id: 3, text: "Burung gagak bisa mengenali wajah manusia dan menyimpan dendam cukup lama.", category: "animal", rarity: "rare" },
+          { id: 4, text: "Kupu-kupu merasakan rasa menggunakan kakinya.", category: "animal", rarity: "common" },
+          { id: 5, text: "Penguin sering memberikan batu kecil sebagai bentuk pendekatan kepada pasangannya. Manis juga ya.", category: "animal", rarity: "epic" },
+          { id: 6, text: "Satu hari di Venus lebih lama daripada satu tahun di Venus.", category: "space", rarity: "common" },
+          { id: 7, text: "Di beberapa planet, para ilmuwan memperkirakan bisa terjadi hujan berlian.", category: "space", rarity: "rare" },
+          { id: 8, text: "Cahaya bintang yang kamu lihat malam ini bisa saja berasal dari bintang yang sudah tidak ada.", category: "space", rarity: "rare" },
+          { id: 9, text: "Di luar angkasa tidak ada suara, karena tidak ada udara untuk menghantarkan gelombang suara.", category: "space", rarity: "common" },
+          { id: 10, text: "Setiap kali melihat langit malam, kamu sebenarnya sedang melihat masa lalu.", category: "space", rarity: "epic" },
+          { id: 11, text: "Otak manusia menghasilkan listrik cukup untuk menyalakan lampu kecil.", category: "human", rarity: "common" },
+          { id: 12, text: "Detak jantung dua orang bisa menjadi lebih sinkron saat mereka dekat secara emosional.", category: "human", rarity: "epic" },
+          { id: 13, text: "Tertawa dapat membantu meningkatkan sistem imun tubuh.", category: "human", rarity: "common" },
+          { id: 14, text: "Aroma tertentu bisa memicu kenangan lama dengan sangat kuat.", category: "human", rarity: "common" },
+          { id: 15, text: "Tatapan mata lebih dari beberapa detik bisa meningkatkan rasa kedekatan.", category: "human", rarity: "rare" },
+          { id: 16, text: "Bau khas setelah hujan punya nama: petrichor.", category: "nature", rarity: "common" },
+          { id: 17, text: "Air panas dalam kondisi tertentu bisa membeku lebih cepat daripada air dingin.", category: "nature", rarity: "rare" },
+          { id: 18, text: "Pohon bisa saling berbagi nutrisi melalui jaringan jamur di bawah tanah.", category: "nature", rarity: "rare" },
+          { id: 19, text: "Ada lebih banyak pohon di Bumi daripada bintang di Galaksi Bima Sakti.", category: "nature", rarity: "epic" },
+          { id: 20, text: "Manusia secara alami sedikit lebih tinggi saat pagi hari dibanding malam hari.", category: "human", rarity: "common" },
+          { id: 21, text: "Pisang secara botani termasuk berry, sementara stroberi bukan berry sejati.", category: "random", rarity: "common" },
+          { id: 22, text: "Wortel dulunya banyak yang berwarna ungu sebelum warna oranye populer.", category: "random", rarity: "common" },
+          { id: 23, text: "Musik bisa memengaruhi detak jantung dan suasana hati.", category: "human", rarity: "common" },
+          { id: 24, text: "Senyum bisa menipu otak untuk merasa sedikit lebih bahagia.", category: "human", rarity: "common" },
+          { id: 25, text: "Lebah bisa mengenali wajah manusia.", category: "animal", rarity: "rare" },
+          { id: 26, text: "Kucing bisa mengenali suara pemiliknya, tapi kadang memilih pura-pura tidak peduli.", category: "animal", rarity: "common" },
+          { id: 27, text: "Rasa penasaran membuat otak lebih aktif dalam menyerap informasi.", category: "human", rarity: "common" },
+          { id: 28, text: "Waktu terasa lebih cepat saat kamu menikmati sesuatu.", category: "human", rarity: "rare" },
+          { id: 29, text: "Manusia bisa mengenali ribuan wajah sepanjang hidupnya.", category: "human", rarity: "common" },
+          { id: 30, text: "Kadang satu momen kecil bisa mengubah arah hidup seseorang.", category: "random", rarity: "epic" },
+        ];
+
+        let isBgmPlaying = false;
+        function toggleBGM() {
+            const bgm = document.getElementById('bgmReactor');
+            const btn = document.getElementById('bgmToggleBtn');
+            if (isBgmPlaying) {
+                bgm.pause();
+                btn.style.color = 'rgba(162,155,254,0.4)';
+                btn.style.borderColor = 'rgba(162,155,254,0.3)';
+                btn.style.boxShadow = 'none';
+                isBgmPlaying = false;
+            } else {
+                bgm.play().then(() => {
+                    btn.style.color = '#00ffff';
+                    btn.style.borderColor = '#00ffff';
+                    btn.style.boxShadow = '0 0 15px rgba(0,255,255,0.4)';
+                    isBgmPlaying = true;
+                }).catch(err => {
+                    console.log("Audio play blocked", err);
+                });
+            }
+        }
+
+        let phase = 'idle'; // idle, processing, result
+        let recentHistory = [];
+        let detailedHistory = []; // last 3 detailed facts
+        let selectedCategory = 'all';
+        let stats = {
+            total: parseInt(localStorage.getItem('fact_stat_total') || '0'),
+            rare: parseInt(localStorage.getItem('fact_stat_rare') || '0'),
+            epic: parseInt(localStorage.getItem('fact_stat_epic') || '0'),
+            streak: parseInt(localStorage.getItem('fact_stat_streak') || '0')
+        };
+        let coins = parseInt(localStorage.getItem('slotCoins') || '999');
+        const COST = 50;
+
+        function pickRarity() {
+            const roll = Math.random() * 100;
+            if (roll < 5) return 'epic';
+            if (roll < 25) return 'rare';
+            return 'common';
+        }
+
+        function setCategory(cat, btn) {
+            if (phase === 'processing') return;
+            try {
+                document.getElementById('sfxClick').play();
+            } catch(e){}
+            selectedCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateAttempts();
+        }
+
+        function updateAttempts() {
+            const attemptsEl = document.getElementById('attemptsLeft');
+            const warnEl = document.getElementById('energyWarn');
+            const count = Math.floor(coins / COST);
+            attemptsEl.textContent = count;
+            if (count <= 1) {
+                warnEl.style.display = 'block';
+            } else {
+                warnEl.style.display = 'none';
+            }
+        }
+
+        function getRandomFact() {
+            const rarity = pickRarity();
+            let pool = facts;
+            
+            if (selectedCategory !== 'all' && selectedCategory !== 'random') {
+                pool = facts.filter(f => f.category === selectedCategory);
+            }
+            
+            let rarityPool = pool.filter(f => f.rarity === rarity);
+            if (rarityPool.length === 0) rarityPool = pool; 
+
+            let attempts = 0;
+            let fact = rarityPool[Math.floor(Math.random() * rarityPool.length)];
+            while (recentHistory.includes(fact.id) && attempts < 15) {
+                fact = rarityPool[Math.floor(Math.random() * rarityPool.length)];
+                attempts++;
+            }
+            return fact;
+        }
+
+        function updateStatsUI() {
+            document.getElementById('statTotal').textContent = stats.total;
+            document.getElementById('statRare').textContent = stats.rare;
+            document.getElementById('statEpic').textContent = stats.epic;
+            document.getElementById('statStreak').textContent = stats.streak;
+            
+            localStorage.setItem('fact_stat_total', stats.total);
+            localStorage.setItem('fact_stat_rare', stats.rare);
+            localStorage.setItem('fact_stat_epic', stats.epic);
+            localStorage.setItem('fact_stat_streak', stats.streak);
+        }
+
+        function addFactToRecent(fact) {
+            detailedHistory.unshift(fact);
+            if (detailedHistory.length > 3) detailedHistory.pop();
+            
+            const list = document.getElementById('recentList');
+            list.innerHTML = '';
+            
+            detailedHistory.forEach(f => {
+                const badgeStyle = f.rarity === 'epic' ? 'color: #f1c40f; border-color: #f1c40f; box-shadow: 0 0 10px rgba(241,196,15,0.3);' : 
+                                   (f.rarity === 'rare' ? 'color: #a29bfe; border-color: #a29bfe;' : 'color: #00ffff; border-color: #00ffff;');
+                
+                const cardStyle = f.rarity === 'epic' ? 'border: 1px solid #f1c40f; box-shadow: 0 0 10px rgba(241,196,15,0.2);' : 'border: 1px solid rgba(0,255,255,0.1);';
+                
+                const card = document.createElement('div');
+                card.className = 'mini-card';
+                card.style.cssText = cardStyle;
+                card.onclick = () => reopenFact(f);
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-family: 'Press Start 2P', monospace; font-size: 8px; padding: 3px 8px; background: rgba(0,0,0,0.5); border-radius: 3px; ${badgeStyle}">${f.rarity.toUpperCase()}</span>
+                        <span style="font-size: 14px; color: rgba(255,255,255,0.4);">${f.category.toUpperCase()}</span>
+                    </div>
+                    <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px;">${f.text}</div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function reopenFact(f) {
+            if (phase === 'processing') return;
+            try {
+                document.getElementById('sfxClick').play();
+            } catch(e){}
+            phase = 'result';
+            
+            document.getElementById('factCardReveal').style.display = 'flex';
+            document.getElementById('factMainText').textContent = f.text;
+            
+            const rarityBadge = document.getElementById('rarityBadge');
+            const cardReveal = document.getElementById('factCardReveal');
+            
+            if (f.rarity === 'epic') {
+                rarityBadge.textContent = 'EPIC FACT 🌟';
+                rarityBadge.style.color = '#f1c40f';
+                rarityBadge.style.borderColor = '#f1c40f';
+                cardReveal.style.borderColor = '#f1c40f';
+                cardReveal.style.boxShadow = '0 0 30px rgba(241, 196, 15, 0.5)';
+            } else if (f.rarity === 'rare') {
+                rarityBadge.textContent = 'RARE FACT 🔮';
+                rarityBadge.style.color = '#a29bfe';
+                rarityBadge.style.borderColor = '#a29bfe';
+                cardReveal.style.borderColor = '#a29bfe';
+                cardReveal.style.boxShadow = '0 0 30px rgba(162, 155, 254, 0.5)';
+            } else {
+                rarityBadge.textContent = 'COMMON FACT ⚙️';
+                rarityBadge.style.color = '#00ffff';
+                rarityBadge.style.borderColor = '#00ffff';
+                cardReveal.style.borderColor = '#00ffff';
+                cardReveal.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.3)';
+            }
+        }
+
+        function handleReactorSpin() {
+            if (phase === 'processing' || phase === 'result') return;
+            window.isActionProcessing = true;
+
+            if (coins < COST) {
+                alert("Koin kurang nih. Coba main slot dulu untuk isi saldo ya! 🎰");
+                window.isActionProcessing = false;
+                if (window.checkFairyRescueAfterAction) window.checkFairyRescueAfterAction();
+                return;
+            }
+
+            try {
+                document.getElementById('sfxDraw').play();
+            } catch(e){}
+
+            coins -= COST;
+            localStorage.setItem('slotCoins', coins);
+            document.getElementById('coinDisplay').textContent = coins;
+            
+            updateAttempts();
+
+            phase = 'processing';
+            
+            // Dim side panels
+            document.getElementById('leftPanel').style.filter = 'brightness(0.3)';
+            document.getElementById('rightPanel').style.filter = 'brightness(0.3)';
+
+            const statusLabel = document.getElementById('reactorStatus');
+            const core = document.getElementById('reactorCore');
+            const outer = document.getElementById('ringOuter');
+            const inner = document.getElementById('ringInner');
+            const cardReveal = document.getElementById('factCardReveal');
+
+            cardReveal.style.display = 'none';
+
+            outer.style.animationDuration = '3s';
+            inner.style.animationDuration = '1.5s';
+            core.style.transform = 'scale(1.3)';
+            core.style.boxShadow = '0 0 60px #00ffff';
+
+            const thinkingTexts = [
+                "Scanning unknown data…",
+                "Filtering common knowledge…",
+                "Accessing hidden layer…",
+                "Parsing dark protocols…"
+            ];
+            
+            let textIdx = 0;
+            const textInterval = setInterval(() => {
+                if (phase !== 'processing') { clearInterval(textInterval); return; }
+                statusLabel.textContent = thinkingTexts[textIdx % thinkingTexts.length];
+                textIdx++;
+            }, 500);
+
+            document.body.style.animation = 'shakeScreen 1.5s ease infinite';
+
+            setTimeout(() => {
+                clearInterval(textInterval);
+                document.body.style.animation = '';
+                
+                const fact = getRandomFact();
+                recentHistory.unshift(fact.id);
+                if (recentHistory.length > 8) recentHistory.pop();
+
+                // Increment Stats
+                stats.total++;
+                stats.streak++;
+                if (fact.rarity === 'rare') stats.rare++;
+                if (fact.rarity === 'epic') {
+                    stats.epic++;
+                    const rp = document.getElementById('rightPanel');
+                    rp.style.animation = 'none';
+                    setTimeout(() => rp.style.animation = 'goldFlash 1.5s ease 1', 10);
+                }
+                
+                updateStatsUI();
+                addFactToRecent(fact);
+
+                try {
+                    document.getElementById('sfxReveal').play();
+                } catch(e){}
+
+                phase = 'result';
+                outer.style.animationDuration = '20s';
+                inner.style.animationDuration = '10s';
+                core.style.transform = 'scale(1)';
+                core.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.6)';
+
+                // Restore side panels
+                document.getElementById('leftPanel').style.filter = 'brightness(1)';
+                document.getElementById('rightPanel').style.filter = 'brightness(1)';
+
+                statusLabel.textContent = "Analisis Selesai.";
+                statusLabel.style.color = "#00ffff";
+
+                const rarityBadge = document.getElementById('rarityBadge');
+                const factMainText = document.getElementById('factMainText');
+                
+                factMainText.textContent = fact.text;
+                
+                if (fact.rarity === 'epic') {
+                    rarityBadge.textContent = 'EPIC FACT 🌟';
+                    rarityBadge.style.color = '#f1c40f';
+                    rarityBadge.style.borderColor = '#f1c40f';
+                    cardReveal.style.borderColor = '#f1c40f';
+                    cardReveal.style.boxShadow = '0 0 30px rgba(241, 196, 15, 0.5)';
+                } else if (fact.rarity === 'rare') {
+                    rarityBadge.textContent = 'RARE FACT 🔮';
+                    rarityBadge.style.color = '#a29bfe';
+                    rarityBadge.style.borderColor = '#a29bfe';
+                    cardReveal.style.borderColor = '#a29bfe';
+                    cardReveal.style.boxShadow = '0 0 30px rgba(162, 155, 254, 0.5)';
+                } else {
+                    rarityBadge.textContent = 'COMMON FACT ⚙️';
+                    rarityBadge.style.color = '#00ffff';
+                    rarityBadge.style.borderColor = '#00ffff';
+                    cardReveal.style.borderColor = '#00ffff';
+                    cardReveal.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.3)';
+                }
+
+                cardReveal.style.display = 'flex';
+                cardReveal.style.animation = 'cardPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                
+                window.isActionProcessing = false;
+                if (window.checkFairyRescueAfterAction) window.checkFairyRescueAfterAction();
+            }, 2000);
+        }
+
+        function reactToFact(emoji, text) {
+            const toast = document.getElementById('customToast');
+            toast.textContent = `Merespon: ${emoji} ${text}`;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translate(-50%, 0px)';
+            
+            // Update Reaction Log
+            document.getElementById('logReactionEmoji').textContent = emoji;
+            
+            const logTexts = {
+                '😲': 'Sangat menarik, bukan? Pengetahuan baru tercatat.',
+                '🤔': 'Rasa penasaran adalah awal dari pengetahuan.',
+                '😐': 'Siap, mencatat respons analitismu.'
+            };
+            document.getElementById('logReactionText').textContent = logTexts[emoji] || `Merespon dengan ${emoji}`;
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, -50px)';
+            }, 2500);
+        }
+
+        function resetReactor() {
+            phase = 'idle';
+            document.getElementById('factCardReveal').style.display = 'none';
+            const statusLabel = document.getElementById('reactorStatus');
+            statusLabel.textContent = "Tekan untuk menemukan fakta tersembunyi";
+            statusLabel.style.color = "#a29bfe";
+        }
+
+        window.onload = () => {
+            document.getElementById('coinDisplay').textContent = localStorage.getItem('slotCoins') || '999';
+            
+            // Fade in side panels
+            setTimeout(() => {
+                document.getElementById('leftPanel').style.opacity = '1';
+                document.getElementById('rightPanel').style.opacity = '1';
+            }, 800);
+
+            updateStatsUI();
+            updateAttempts();
+        };
+    </script>
+    <script src="magic_global.js"></script>
+    <script src="titah_system.js"></script>
+    <script src="queen_interaction.js"></script>
+</body>
+</html>

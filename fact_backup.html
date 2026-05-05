@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 VIP Gacha Facts - Ms. Hanawazain 👑</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-yellow: #ffff00;
+            --bg-dark: #05010a;
+        }
+
+        .magic-cursor-mode, .magic-cursor-mode * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🪄%3C/text%3E%3C/svg%3E") 4 20, auto !important; }
+        .magic-particle { position: fixed; pointer-events: none; z-index: 10000; font-size: 14px; animation: magicFade 1.2s ease-out forwards; }
+        @keyframes magicFade { 0% { transform: translate(0,0) scale(1); opacity: 0.8; } 100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; } }
+
+        /* ===== ROYAL THEME STYLES ===== */
+        .royal-mode .vegas-nav {
+            border-bottom: 2px solid #f1c40f !important;
+            box-shadow: 0 4px 25px rgba(241, 196, 15, 0.4), inset 0 -1px 5px rgba(255, 255, 255, 0.2) !important;
+            background: linear-gradient(180deg, #1a0a2e, #2c0b4d) !important;
+        }
+        .royal-crown-icon {
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            font-size: 18px; animation: crownFloat 2s ease-in-out infinite;
+            pointer-events: none; z-index: 2005;
+        }
+        @keyframes crownFloat { 0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); } 50% { transform: translateX(-50%) translateY(-5px) rotate(5deg); } }
+        .royal-name { color: #f1c40f !important; text-shadow: 0 0 10px #f1c40f !important; font-weight: bold; position: relative; display: inline-block; }
+
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(18, 16, 35, 0.8) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(18, 16, 35, 0.8) 2px, transparent 2px);
+            background-size: 50px 50px;
+            color: #fff; font-family: 'VT323', monospace; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            padding-top: 100px;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR (SYNCED) ===== */
+        .vegas-nav {
+            position: fixed; top: 0; left: 0; right: 0; height: 75px; z-index: 1000;
+            background: linear-gradient(180deg, #0d0520, #1a0a2e);
+            border-bottom: 2px solid #cc4400;
+            box-shadow: 0 4px 20px rgba(204,68,0,.25);
+            display: flex; align-items: center; padding: 0 20px;
+        }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .nav-link { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #48dbfb; transition: 0.3s; }
+        .nav-link:hover { transform: scale(1.1); color: #feca57; }
+        .nav-emoji { font-size: 20px; }
+        .nav-text { font-family: 'Press Start 2P'; font-size: 6px; margin-top: 4px; }
+        
+        .nav-center { 
+            position: absolute; left: 50%; transform: translateX(-50%);
+            text-align: center; pointer-events: none;
+        }
+        .welcome-text {
+            font-family: 'Pacifico', cursive; font-size: 20px; color: #feca57;
+            text-shadow: 0 0 10px #feca57; white-space: nowrap;
+        }
+        .marquee-container {
+            width: 150px; overflow: hidden; margin: 0 auto;
+        }
+        .marquee-text {
+            display: inline-block; white-space: nowrap; font-family: 'Press Start 2P';
+            font-size: 7px; color: #ff9ff3; animation: marquee-scroll 12s linear infinite;
+        }
+        @keyframes marquee-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        .nav-right { 
+            margin-left: auto; background: rgba(0,0,0,0.5); 
+            border: 2px solid #feca57; border-radius: 30px; 
+            padding: 8px 15px; font-family: 'Press Start 2P'; font-size: 10px; color: #feca57; 
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        /* ===== GACHA MACHINE ===== */
+        .gacha-container {
+            width: 320px; height: 400px; position: relative;
+            background: linear-gradient(135deg, #e94560, #a02040);
+            border: 8px solid var(--neon-yellow);
+            border-radius: 120px 120px 20px 20px; padding: 40px;
+            display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 0 50px rgba(233, 69, 96, 0.4), inset 0 0 20px rgba(0,0,0,0.3);
+            margin-top: 20px;
+        }
+        .gacha-glass {
+            width: 200px; height: 150px; background: rgba(255,255,255,0.1);
+            border-radius: 80px 80px 10px 10px; border: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .gacha-balls { font-size: 40px; filter: drop-shadow(0 0 10px #fff); }
+        
+        .gacha-knob {
+            width: 80px; height: 80px; background: #1a0a2e; border: 4px solid var(--neon-yellow);
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: var(--neon-yellow); font-family: 'Press Start 2P'; font-size: 8px; transition: 0.5s;
+            margin-top: 40px; box-shadow: 0 4px 0 #888;
+        }
+        .gacha-knob:hover { transform: rotate(180deg); box-shadow: 0 0 20px var(--neon-yellow); }
+        .gacha-knob:active { transform: scale(0.9) rotate(180deg); box-shadow: 0 2px 0 #888; }
+        
+        .fact-card {
+            width: 90%; max-width: 500px; background: rgba(13, 5, 32, 0.95);
+            border: 3px solid var(--neon-blue); border-radius: 20px; padding: 30px;
+            margin-top: 40px; text-align: center; display: none;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: cardPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes cardPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        #factContent { font-size: 28px; font-family: 'VT323'; line-height: 1.4; color: #48dbfb; text-shadow: 0 0 8px #48dbfb; }
+
+        /* MAGIC CURSOR MODE */
+        .magic-cursor-mode, .magic-cursor-mode * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🪄%3C/text%3E%3C/svg%3E") 4 20, auto !important; }
+        .magic-particle { position: fixed; pointer-events: none; z-index: 10000; font-size: 14px; animation: magicFade 1.2s ease-out forwards; }
+        @keyframes magicFade { 0% { transform: translate(0,0) scale(1); opacity: 0.8; } 100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; } }
+    </style>
+    <script>
+        (function initCursor() {
+            const active = localStorage.getItem('isMagicActive') === 'true';
+            const isQueen = localStorage.getItem('isQueenActive') === 'true';
+            if (isQueen) document.documentElement.classList.add('royal-mode');
+
+            if (active) {
+                document.documentElement.classList.add('magic-cursor-mode');
+                document.addEventListener('mousemove', (e) => {
+                    if (Math.random() > 0.6) {
+                        const p = document.createElement('div');
+                        p.className = 'magic-particle';
+                        p.textContent = isQueen ? ['✨','💎','🌟','👑'][Math.floor(Math.random()*4)] : ['✨','⭐','🌟','💫'][Math.floor(Math.random()*4)];
+                        p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+                        p.style.setProperty('--mx', (Math.random()*120-60)+'px');
+                        p.style.setProperty('--my', (Math.random()*120-60)+'px');
+                        const colors = isQueen ? ['#f1c40f', '#fff', '#feca57', '#e67e22'] : ['#fff', '#feca57', '#ff9ff3', '#48dbfb', '#1dd1a1'];
+                        p.style.color = colors[Math.floor(Math.random()*colors.length)];
+                        p.style.textShadow = `0 0 10px ${p.style.color}`;
+                        p.style.fontSize = (10 + Math.random() * 10) + 'px';
+                        document.body.appendChild(p);
+                        setTimeout(() => p.remove(), 1200);
+                    }
+                });
+            }
+        })();
+
+        function syncRoyalIdentity() {
+            const isQueen = localStorage.getItem('isQueenActive') === 'true';
+            const isRing = localStorage.getItem('isRingAccepted') === 'true';
+            const nameEl = document.querySelector('.welcome-text');
+            
+            if (isQueen) {
+                if (nameEl) {
+                    nameEl.innerHTML = `<div class="royal-name"><div class="royal-crown-icon">👑</div>Her Majesty Queen Nanaz has arrived. ${isRing ? '<span style="color:#48dbfb; cursor:pointer; margin-left:10px; font-size:18px;" title="The Owner of Eternal Diamond Ring">💎💍</span>' : ''}</div>`;
+                }
+                document.documentElement.classList.add('royal-mode');
+            } else {
+                if (nameEl) {
+                    nameEl.innerHTML = `✨ Welcome Nanaz!!! 💖 ${isRing ? '<span style="color:#48dbfb; cursor:pointer; margin-left:10px; font-size:16px;" title="The Owner of Eternal Diamond Ring">💎💍</span>' : ''}`;
+                }
+                document.documentElement.classList.remove('royal-mode');
+            }
+        }
+        function startShootingWish() {
+            setInterval(() => {
+                const wishText = localStorage.getItem('eternalHeartWish');
+                if (!wishText) return;
+
+                const star = document.createElement('div');
+                star.style.cssText = `
+                    position: fixed; top: ${10 + Math.random() * 20}vh; left: -400px;
+                    background: linear-gradient(90deg, rgba(255,71,87,0), rgba(255,71,87,0.85), rgba(255,71,87,0));
+                    color: #fff; font-family: "VT323", monospace; font-size: 18px;
+                    padding: 8px 25px; border-radius: 20px; z-index: 99999;
+                    box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+                    pointer-events: none; white-space: nowrap;
+                    transition: transform 12s linear;
+                    display: flex; align-items: center; gap: 10px;
+                `;
+                star.innerHTML = `<span>🌠</span> <em>"${wishText}"</em>`;
+                document.body.appendChild(star);
+
+                setTimeout(() => {
+                    star.style.transform = `translateX(${window.innerWidth + 800}px)`;
+                }, 100);
+
+                setTimeout(() => {
+                    star.remove();
+                }, 13000);
+            }, 45000);
+        }
+        window.addEventListener('DOMContentLoaded', startShootingWish);
+
+        window.addEventListener('DOMContentLoaded', syncRoyalIdentity);
+
+
+    </script>
+</head>
+<body>
+    <nav class="vegas-nav">
+        <div class="nav-left">
+            <a href="birthday.html" class="nav-link"><span class="nav-emoji">🏠</span><span class="nav-text">HOME</span></a>
+            <a href="slot.html" class="nav-link"><span class="nav-emoji">🎰</span><span class="nav-text">SLOT</span></a>
+            <a href="shop.html" class="nav-link"><span class="nav-emoji">🛒</span><span class="nav-text">SHOP</span></a>
+            <a href="history.html" class="nav-link"><span class="nav-emoji">📜</span><span class="nav-text">HIST</span></a>
+        </div>
+        <div class="nav-center">
+            <div class="welcome-text">✨ Welcome Nanaz!!! 💖</div>
+            <div class="marquee-container">
+                <div class="marquee-text">FAKTA WOW UNTUK TUAN PUTRI ✨ SEMUA HAL KEREN TERJADI DI TANGGALMU! ✨</div>
+            </div>
+        </div>
+        <div class="nav-right">🪙 <span id="coinDisplay">0</span></div>
+    </nav>
+
+    <div class="gacha-container">
+        <div class="gacha-glass">
+            <div class="gacha-balls" id="ballEmoji">🔮</div>
+        </div>
+        <div class="gacha-knob" onclick="drawFact()">PUTAR</div>
+        <p style="font-family:'Press Start 2P'; font-size:7px; color:#fff; margin-top:25px; opacity:0.8;">50 🪙 PER PUTAR</p>
+    </div>
+
+    <div class="fact-card" id="factCard">
+        <div id="factContent"></div>
+    </div>
+
+    <audio id="sfxDraw" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+
+    <script>
+        function drawFact() {
+            let coins = parseInt(localStorage.getItem('slotCoins') || '0');
+            if (coins < 50) {
+                alert("Koin kurang! Main slot dulu ya~ 🎰");
+                return;
+            }
+            
+            document.getElementById('sfxDraw').play();
+            const balls = ['🔮', '💎', '🎁', '⭐', '🌈'];
+            document.getElementById('ballEmoji').textContent = balls[Math.floor(Math.random() * balls.length)];
+            
+            coins -= 50; localStorage.setItem('slotCoins', coins);
+            document.getElementById('coinDisplay').textContent = coins;
+            
+            const facts = [
+                "Paul McCartney merilis album solo pertamanya 10 April 1970! 🎸",
+                "Nanaz lahir 2006 - Legenda paling cantik akhirnya mendarat! ✨",
+                "Dunia bergetar saat bintang 2006 mendarat membawa kebahagiaan! 🌟",
+                "Tanggal 10 April emang asik buat ngerayain ulang tahun kamu! 🎂"
+            ];
+            
+            const card = document.getElementById('factCard');
+            card.style.display = 'none';
+            setTimeout(() => {
+                document.getElementById('factContent').textContent = facts[Math.floor(Math.random() * facts.length)];
+                card.style.display = 'block';
+            }, 300);
+        }
+
+        window.onload = () => {
+            document.getElementById('coinDisplay').textContent = localStorage.getItem('slotCoins') || '0';
+        };
+    </script>
+    <script src="magic_global.js"></script>
+</body>
+</html>
