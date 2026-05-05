@@ -506,23 +506,33 @@
 
         /* MOBILE RESPONSIVE FIXES */
         @media (max-width: 768px) {
-            html, body { overflow-x: hidden; position: relative; width: 100%; }
+            *, *::before, *::after { box-sizing: border-box !important; }
+            html, body { overflow-x: hidden; position: relative; width: 100%; -webkit-text-size-adjust: 100%; }
+            
             .card, .terminal-window, .onboarding-card, .confirm-card, .shop-container, .slot-container, .history-container { 
                 width: 92% !important; 
-                max-width: 95vw !important; 
+                max-width: 92vw !important; 
                 padding: 20px 15px !important; 
-                margin: 10px auto !important; 
-                font-size: 0.9em !important;
+                margin: 5vh auto !important; 
+                font-size: 0.85em !important;
+                max-height: 85vh;
+                overflow-y: auto;
             }
-            .terminal-text { font-size: 18px !important; }
-            .sambutan-text { font-size: 24px !important; line-height: 1.5 !important; }
+            
+            .onboarding-title { font-size: 14px !important; margin-bottom: 10px !important; }
+            .onboarding-desc { font-size: 16px !important; line-height: 1.4 !important; }
+            .onboarding-img { font-size: 40px !important; margin-bottom: 10px !important; }
+            
+            .terminal-text { font-size: 18px !important; padding: 10px !important; }
+            .sambutan-text { font-size: 20px !important; line-height: 1.4 !important; }
             .history-progress { width: 80% !important; }
-            .scroll-roller { width: 90% !important; max-width: 320px !important; }
-            .scroll-paper { width: 85% !important; max-width: 280px !important; }
+            .scroll-roller { width: 90% !important; max-width: 300px !important; }
+            .scroll-paper { width: 85% !important; max-width: 260px !important; }
             
             /* Navbar mobile fix */
-            nav, .navbar { flex-wrap: wrap; justify-content: center !important; gap: 10px; padding: 10px !important; }
-            .coin-display { font-size: 12px !important; }
+            nav, .navbar { flex-wrap: wrap; justify-content: center !important; gap: 8px; padding: 5px !important; height: auto !important; }
+            .coin-display { font-size: 11px !important; padding: 5px !important; }
+            .nav-btn { font-size: 10px !important; padding: 5px 8px !important; }
         }
     
     `;
