@@ -503,6 +503,27 @@
         .magic-cursor-mode, .magic-cursor-mode * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🪄%3C/text%3E%3C/svg%3E") 4 20, auto !important; }
         .magic-particle { position: fixed; pointer-events: none; z-index: 10000002; font-size: 14px; animation: magicFade 1.2s ease-out forwards; }
         @keyframes magicFade { 0% { transform: translate(0,0) scale(1); opacity: 0.8; } 100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; } }
+
+        /* MOBILE RESPONSIVE FIXES */
+        @media (max-width: 768px) {
+            html, body { overflow-x: hidden; position: relative; width: 100%; }
+            .card, .terminal-window, .onboarding-card, .confirm-card, .shop-container, .slot-container, .history-container { 
+                width: 92% !important; 
+                max-width: 95vw !important; 
+                padding: 20px 15px !important; 
+                margin: 10px auto !important; 
+                font-size: 0.9em !important;
+            }
+            .terminal-text { font-size: 18px !important; }
+            .sambutan-text { font-size: 24px !important; line-height: 1.5 !important; }
+            .history-progress { width: 80% !important; }
+            .scroll-roller { width: 90% !important; max-width: 320px !important; }
+            .scroll-paper { width: 85% !important; max-width: 280px !important; }
+            
+            /* Navbar mobile fix */
+            nav, .navbar { flex-wrap: wrap; justify-content: center !important; gap: 10px; padding: 10px !important; }
+            .coin-display { font-size: 12px !important; }
+        }
     
     `;
     document.head.appendChild(style);
