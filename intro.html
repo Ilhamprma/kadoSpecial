@@ -513,7 +513,6 @@ document.getElementById('pwdInput').addEventListener('keypress',e=>{if(e.key==='
 // Final Gift
 function openFinalGift(){
     localStorage.setItem('introDone','true');
-    localStorage.setItem('slotCoins', '50');
     localStorage.setItem('triggerSurprise','true'); // Send signal to birthday.html!
     const introSeq=document.getElementById('introSequence');
     triggerGlitch();
@@ -524,7 +523,6 @@ function openFinalGift(){
 }
 
 </script>
-    <script defer src="/_vercel/insights/script.js"></script>
     <script src="magic_global.js"></script>
 </body>
 </html>

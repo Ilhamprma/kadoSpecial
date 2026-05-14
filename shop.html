@@ -1371,48 +1371,24 @@
             animation: neonSoftBounce 2s ease-in-out infinite;
         }
 
-        /* ===== NEW NEON GREEN SCROLL HINT ===== */
-        .shop-scroll-hint {
-            position: fixed; left: 50px; bottom: 80px;
-            display: flex; flex-direction: column; align-items: center;
-            gap: 15px; pointer-events: none; z-index: 10000;
-            opacity: 0.9; animation: scrollFloat 2.5s ease-in-out infinite;
+        /* Specific positions based on user's marks - All moved to the right side */
+        .neon-scroll-container.pos-top-left {
+            top: 250px;
+            left: calc(50% + 420px);
         }
-        @keyframes scrollFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
-        .scroll-hint-arrow {
-            width: 35px; height: 35px;
-            border-right: 4px solid #39ff88; border-bottom: 4px solid #39ff88;
-            transform: rotate(45deg); filter: drop-shadow(0 0 10px #39ff88);
-            animation: scrollPulse 2s infinite;
+        .neon-scroll-container.pos-mid-right {
+            top: 750px;
+            left: calc(50% + 420px);
         }
-        @keyframes scrollPulse { 0%, 100% { opacity: 0.5; filter: drop-shadow(0 0 5px #39ff88); } 50% { opacity: 1; filter: drop-shadow(0 0 15px #39ff88); } }
-        .scroll-hint-text {
-            font-family: 'Press Start 2P', monospace; font-size: 9px;
-            color: #39ff88; text-shadow: 0 0 12px rgba(57, 255, 136, 0.7);
-            letter-spacing: 1px; text-transform: uppercase;
+        .neon-scroll-container.pos-low-left {
+            top: 1300px;
+            left: calc(50% + 420px);
         }
-        @media(max-width: 850px) { .shop-scroll-hint { display: none !important; } }
-
-        /* ===== INVENTORY HIGHLIGHT ===== */
-        .inventory-highlight {
-            outline: 4px solid #39ff88 !important;
-            outline-offset: 10px;
-            box-shadow: 0 0 60px rgba(57, 255, 136, 0.4), inset 0 0 30px rgba(57, 255, 136, 0.2) !important;
-            border-radius: 20px;
-            position: relative;
+        .neon-scroll-container.pos-bottom-center {
+            bottom: 220px;
+            left: calc(50% + 420px);
             z-index: 10;
-            transition: all 0.5s ease;
         }
-        .highlight-helper {
-            position: absolute; top: -50px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(135deg, #39ff88, #2ecc71); color: #0a0520;
-            padding: 8px 20px; border-radius: 30px; font-weight: bold;
-            font-family: 'VT323', monospace; font-size: 20px; white-space: nowrap;
-            box-shadow: 0 0 20px rgba(57, 255, 136, 0.4);
-            animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
-            z-index: 11;
-        }
-        @keyframes bounceIn { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-10px); } }
 
         .neon-frame {
             width: 80px;
@@ -2362,7 +2338,6 @@
         }
     </script>
 
-    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body>
@@ -2611,6 +2586,8 @@
             <div class="nav-item-dropdown">
                 <a href="javascript:void(0)">🕹️ ARCADE ▼</a>
                 <div class="dropdown-menu">
+                    <a href="runner.html" class="dropdown-link"><span class="dropdown-emoji">🧚</span><span>RUNNER</span></a>
+                    <a href="blackjack.html" class="dropdown-link"><span class="dropdown-emoji">🃏</span><span>BLACKJACK</span></a>
                 <a href="fortune.html" class="dropdown-link"><span
                         class="dropdown-emoji">🔮</span><span>PERAMAL</span></a>
                 <a href="fact.html" class="dropdown-link"><span class="dropdown-emoji">💡</span><span>FAKTA
@@ -2732,12 +2709,46 @@
         <div class="flirt-text" id="flirtText"></div>
     </div>
 
-    <!-- NEW NEON GREEN SCROLL HINT -->
-    <div class="shop-scroll-hint" id="shopScrollHint">
-        <div class="scroll-hint-text">scroll down</div>
-        <div class="scroll-hint-arrow"></div>
+    <!-- NEON SCROLL GUIDANCE - STAGGERED INSTANCES -->
+    <div class="neon-scroll-container pos-top-left">
+        <div class="neon-frame">
+            <div class="neon-mouse">
+                <div class="mouse-wheel"></div>
+                <div class="mouse-arrow"></div>
+            </div>
+        </div>
+        <div class="neon-scroll-text">scroll down</div>
     </div>
 
+    <div class="neon-scroll-container pos-mid-right">
+        <div class="neon-frame">
+            <div class="neon-mouse">
+                <div class="mouse-wheel"></div>
+                <div class="mouse-arrow"></div>
+            </div>
+        </div>
+        <div class="neon-scroll-text">scroll down</div>
+    </div>
+
+    <div class="neon-scroll-container pos-low-left">
+        <div class="neon-frame">
+            <div class="neon-mouse">
+                <div class="mouse-wheel"></div>
+                <div class="mouse-arrow"></div>
+            </div>
+        </div>
+        <div class="neon-scroll-text">scroll down</div>
+    </div>
+
+    <div class="neon-scroll-container pos-bottom-center">
+        <div class="neon-frame">
+            <div class="neon-mouse">
+                <div class="mouse-wheel"></div>
+                <div class="mouse-arrow"></div>
+            </div>
+        </div>
+        <div class="neon-scroll-text">scroll down</div>
+    </div>
 
 
 
@@ -5786,30 +5797,6 @@ Perjanjian ini mungkin terdengar sederhana, namun seringkali kebahagiaan datang 
                     const newUrl = window.location.pathname;
                     window.history.replaceState({}, document.title, newUrl);
                 }, 1000);
-            }
-        });
-        // ===== HIGHLIGHT INVENTORY LOGIC =====
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('highlightInventory') === 'true') {
-                localStorage.removeItem('highlightInventory');
-                const invSection = document.getElementById('inventorySection');
-                if (invSection) {
-                    setTimeout(() => {
-                        invSection.scrollIntoView({ behavior: 'smooth' });
-                        invSection.classList.add('inventory-highlight');
-                        const helper = document.createElement('div');
-                        helper.className = 'highlight-helper';
-                        helper.textContent = 'KLIK ITEM UNTUK PAKAI ✨';
-                        invSection.appendChild(helper);
-                        
-                        setTimeout(() => {
-                            invSection.classList.remove('inventory-highlight');
-                            helper.style.opacity = '0';
-                            helper.style.transition = 'opacity 0.5s ease';
-                            setTimeout(() => helper.remove(), 500);
-                        }, 8000);
-                    }, 1000);
-                }
             }
         });
     </script>

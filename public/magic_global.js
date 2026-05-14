@@ -498,43 +498,6 @@
         .progress-bar-track { flex: 1; height: 6px; background: rgba(0, 0, 0, 0.3); border-radius: 999px; position: relative; cursor: pointer; border: 1px solid rgba(212, 175, 110, 0.1); }
         .progress-bar-fill { position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(90deg, #d4af6e, #ff9ff3); border-radius: 999px; box-shadow: 0 0 10px rgba(212, 175, 110, 0.3); pointer-events: none; display: flex; align-items: center; justify-content: flex-end; }
         .progress-knob { width: 12px; height: 12px; background: #d4af6e; border-radius: 50%; margin-right: -6px; box-shadow: 0 0 10px rgba(212, 175, 110, 0.8); border: 2px solid #15082a; }
-
-        /* MAGIC WAND STYLES */
-        .magic-cursor-mode, .magic-cursor-mode * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🪄%3C/text%3E%3C/svg%3E") 4 20, auto !important; }
-        .magic-particle { position: fixed; pointer-events: none; z-index: 10000002; font-size: 14px; animation: magicFade 1.2s ease-out forwards; }
-        @keyframes magicFade { 0% { transform: translate(0,0) scale(1); opacity: 0.8; } 100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; } }
-
-        /* MOBILE RESPONSIVE FIXES */
-        @media (max-width: 768px) {
-            *, *::before, *::after { box-sizing: border-box !important; }
-            html, body { overflow-x: hidden; position: relative; width: 100%; -webkit-text-size-adjust: 100%; }
-            
-            .card, .terminal-window, .onboarding-card, .confirm-card, .shop-container, .slot-container, .history-container { 
-                width: 92% !important; 
-                max-width: 92vw !important; 
-                padding: 20px 15px !important; 
-                margin: 5vh auto !important; 
-                font-size: 0.85em !important;
-                max-height: 85vh;
-                overflow-y: auto;
-            }
-            
-            .onboarding-title { font-size: 14px !important; margin-bottom: 10px !important; }
-            .onboarding-desc { font-size: 16px !important; line-height: 1.4 !important; }
-            .onboarding-img { font-size: 40px !important; margin-bottom: 10px !important; }
-            
-            .terminal-text { font-size: 18px !important; padding: 10px !important; }
-            .sambutan-text { font-size: 20px !important; line-height: 1.4 !important; }
-            .history-progress { width: 80% !important; }
-            .scroll-roller { width: 90% !important; max-width: 300px !important; }
-            .scroll-paper { width: 85% !important; max-width: 260px !important; }
-            
-            /* Navbar mobile fix */
-            nav, .navbar { flex-wrap: wrap; justify-content: center !important; gap: 8px; padding: 5px !important; height: auto !important; }
-            .coin-display { font-size: 11px !important; padding: 5px !important; }
-            .nav-btn { font-size: 10px !important; padding: 5px 8px !important; }
-        }
-    
     `;
     document.head.appendChild(style);
 
@@ -1436,7 +1399,7 @@
 
     function finalizeRescue() {
         phase = 'unfreeze';
-        localStorage.setItem('slotCoins', 50);
+        localStorage.setItem('slotCoins', 100);
         document.querySelectorAll('.grayscale-freeze').forEach(el => el.classList.remove('grayscale-freeze'));
         const goodbye = document.createElement('div');
         goodbye.style.cssText = `position: fixed; left: 50%; top: 40%; transform: translate(-50%, -50%); color: #ffb7fb; font-family: 'VT323', monospace; font-size: 32px; text-shadow: 0 0 10px #ffb7fb; z-index: 10000002; background: rgba(16, 5, 29, 0.8); border: 1px solid rgba(255,183,251,0.5); padding: 10px 20px; border-radius: 10px; pointer-events: none;`;
@@ -1744,85 +1707,4 @@
 
     // Start monitoring
     checkMagic();
-
-    // --- GLOBAL MAGIC WAND EFFECTS (SPARKLE & CLICK BURST) ---
-    (function initGlobalMagicEffects() {
-        const checkEffects = () => {
-            const isMagic = localStorage.getItem('isMagicActive') === 'true';
-            const isQueen = localStorage.getItem('isQueenActive') === 'true';
-            
-            if (isMagic) {
-                document.documentElement.classList.add('magic-cursor-mode');
-            } else if (!isQueen) {
-                document.documentElement.classList.remove('magic-cursor-mode');
-            }
-        };
-
-        // Listen for mousemove for cursor sparkles
-        document.addEventListener('mousemove', (e) => {
-            if (localStorage.getItem('isMagicActive') !== 'true') return;
-            if (Math.random() > 0.6) {
-                spawnMagicParticle(e.clientX, e.clientY, false);
-            }
-        });
-
-        // Listen for click for explosion effect
-        document.addEventListener('click', (e) => {
-            const isMagic = localStorage.getItem('isMagicActive') === 'true';
-            const isQueen = localStorage.getItem('isQueenActive') === 'true';
-            
-            if (isMagic) {
-                // Magic Wand Explosion
-                for (let i = 0; i < 8; i++) {
-                    spawnMagicParticle(e.clientX, e.clientY, true);
-                }
-                if (window.playSFX) window.playSFX([600, 800], 'sine', 0.05, 0.1);
-            }
-            
-            if (isQueen && !isMagic) {
-                // Royal Click Burst (Fallthrough if only Queen is active)
-                const emojis = ['👑', '✨', '💎', '🌟', '⚜️'];
-                const colors = ['#f1c40f', '#fff', '#feca57', '#e67e22'];
-                for (let i = 0; i < 12; i++) {
-                    const p = document.createElement('div');
-                    p.className = 'magic-particle';
-                    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                    p.style.left = e.clientX + 'px';
-                    p.style.top = e.clientY + 'px';
-                    const angle = (Math.PI * 2 * i) / 12;
-                    const distance = 40 + Math.random() * 80;
-                    p.style.setProperty('--mx', Math.cos(angle) * distance + 'px');
-                    p.style.setProperty('--my', Math.sin(angle) * distance + 'px');
-                    p.style.color = colors[Math.floor(Math.random() * colors.length)];
-                    p.style.textShadow = `0 0 10px ${p.style.color}`;
-                    p.style.fontSize = (12 + Math.random() * 12) + 'px';
-                    document.body.appendChild(p);
-                    setTimeout(() => p.remove(), 1200);
-                }
-            }
-        });
-
-        function spawnMagicParticle(x, y, isBurst) {
-            const isQueen = localStorage.getItem('isQueenActive') === 'true';
-            const p = document.createElement('div');
-            p.className = 'magic-particle';
-            p.textContent = isQueen ? ['✨','💎','🌟','👑'][Math.floor(Math.random()*4)] : ['✨','⭐','🌟','💫'][Math.floor(Math.random()*4)];
-            p.style.left = x + 'px';
-            p.style.top = y + 'px';
-            
-            const range = isBurst ? 150 : 120;
-            p.style.setProperty('--mx', (Math.random() * range - range/2) + 'px');
-            p.style.setProperty('--my', (Math.random() * range - range/2) + 'px');
-            
-            const colors = isQueen ? ['#f1c40f', '#fff', '#feca57', '#e67e22'] : ['#fff', '#feca57', '#ff9ff3', '#48dbfb', '#1dd1a1'];
-            p.style.color = colors[Math.floor(Math.random() * colors.length)];
-            p.style.textShadow = `0 0 10px ${p.style.color}`;
-            p.style.fontSize = (isBurst ? 14 : 10) + Math.random() * 10 + 'px';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 1200);
-        }
-
-        setInterval(checkEffects, 1000);
-        checkEffects();
-    })();
 })();

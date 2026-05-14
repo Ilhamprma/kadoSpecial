@@ -196,12 +196,22 @@
         }
         window.addEventListener('DOMContentLoaded', syncRoyalIdentity);
 
-        // (onboardingCompleted system removed — unified under tutorialDone)
-
-        // Redirect to intro if user hasn't completed it yet
-        if (!localStorage.getItem('introDone')) {
-            window.location.href = 'intro.html';
+        // Onboarding Trigger
+        function checkOnboarding() {
+            const completed = localStorage.getItem('onboardingCompleted') === 'true';
+            if (!completed) {
+                const overlay = document.getElementById('onboardingOverlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                }
+            }
         }
+        function closeOnboarding() {
+            localStorage.setItem('onboardingCompleted', 'true');
+            const overlay = document.getElementById('onboardingOverlay');
+            if (overlay) overlay.style.display = 'none';
+        }
+        window.addEventListener('load', checkOnboarding);
 
 
     </script>
@@ -1160,48 +1170,24 @@
         @keyframes surpriseTextIn { 0%{opacity:0;transform:scale(0.3)} 40%{opacity:1;transform:scale(1.15)} 60%{opacity:1;transform:scale(0.95)} 80%{opacity:1;transform:scale(1.02)} 100%{opacity:1;transform:scale(1)} }
         @keyframes surpriseTextOut { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.5)} }
 
-        /* ===== REDESIGNED ONBOARDING (RETRO GAME GUIDE) ===== */
-        #onboardingOverlay { 
-            position: fixed; inset: 0; z-index: 10001; display: none; 
-            background: rgba(5, 2, 20, 0.85); backdrop-filter: blur(6px);
-            align-items: center; justify-content: center;
+        #tutorialOverlay { position: fixed; inset: 0; z-index: 10001; display: none; background: rgba(5, 2, 20, 0.92); backdrop-filter: blur(8px); }
+        .tut-container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px; }
+        .tut-progress { width: 80%; max-width: 400px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-bottom: 20px; overflow: hidden; }
+        .tut-prog-bar { height: 100%; background: linear-gradient(90deg, #48dbfb, #feca57); border-radius: 2px; transition: width 0.5s ease; width: 0; }
+        .tut-counter { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #48dbfb; letter-spacing: 3px; margin-bottom: 25px; opacity: 0.6; }
+        .tut-card { 
+            background: rgba(26, 10, 46, 0.95); border: 2px solid #48dbfb; border-radius: 12px; 
+            padding: 35px 30px; max-width: 420px; width: 95%; text-align: center; 
+            box-shadow: 0 0 30px rgba(72,219,251,0.15); animation: tutCardIn 0.5s ease-out; 
         }
-        .onboarding-particles { position: absolute; inset: 0; pointer-events: none; }
-        .onboarding-card { 
-            background: rgba(18, 8, 35, 0.88); border: 2px solid #28eaff; border-radius: 18px; 
-            padding: 34px 32px; max-width: 580px; width: 90%; text-align: center; 
-            box-shadow: 0 0 40px rgba(40, 234, 255, 0.25), inset 0 0 20px rgba(40, 234, 255, 0.1); 
-            animation: missionBriefingIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            position: relative; overflow: hidden;
-        }
-        @keyframes missionBriefingIn { 
-            0% { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(10px); } 
-            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); } 
-        }
-        .onboarding-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .player-guide-label { font-family: 'Press Start 2P', monospace; font-size: 10px; color: #28eaff; letter-spacing: 2px; text-shadow: 0 0 8px rgba(40, 234, 255, 0.5); }
-        .onboarding-counter { font-family: 'Press Start 2P', monospace; font-size: 10px; color: #28eaff; opacity: 0.8; }
-        
-        .onboarding-progress-bar { width: 100%; height: 6px; background: rgba(0,0,0,0.4); border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
-        .onboarding-prog-fill { height: 100%; background: linear-gradient(90deg, #28eaff, #feca57, #ff9ff3); transition: width 0.45s cubic-bezier(0.65, 0, 0.35, 1); width: 0; }
-        
-        #onboardingStep { transition: all 0.4s ease; }
-        .step-exit { opacity: 0; transform: translateX(-20px); filter: blur(5px); }
-        .step-enter { opacity: 0; transform: translateX(20px); filter: blur(5px); }
-
-        .onboarding-emoji { font-size: 70px; margin-bottom: 20px; display: block; animation: floatIcon 3s ease-in-out infinite; filter: drop-shadow(0 0 15px rgba(255,255,255,0.3)); }
-        @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        
-        .onboarding-title { font-family: 'Press Start 2P', monospace; font-size: 18px; color: #feca57; margin-bottom: 22px; text-transform: uppercase; text-shadow: 0 0 12px rgba(254, 202, 87, 0.4); }
-        .onboarding-desc { font-family: 'VT323', monospace; font-size: 26px; color: #e8d5f5; line-height: 1.7; text-align: center; }
-        
-        .onboarding-nav { display: flex; gap: 20px; margin-top: 40px; justify-content: center; }
-        .onboarding-btn { font-family: 'Press Start 2P', monospace; font-size: 11px; padding: 14px 28px; border-radius: 8px; cursor: pointer; transition: all 0.3s; border: none; }
-        #skipOnboarding { background: transparent; color: #888; border: 1px solid rgba(255,255,255,0.15); }
-        #skipOnboarding:hover { color: #ccc; border-color: rgba(255,255,255,0.4); }
-        #nextOnboarding { background: linear-gradient(135deg, #e94560, #ff6b6b); color: #fff; box-shadow: 0 0 15px rgba(233, 69, 96, 0.3); }
-        #nextOnboarding:hover { transform: scale(1.03); box-shadow: 0 0 25px rgba(233, 69, 96, 0.5); }
-
+        .tut-emoji { font-size: 60px; margin-bottom: 15px; }
+        .tut-title { font-family: 'Press Start 2P', monospace; font-size: 14px; color: #feca57; margin-bottom: 18px; line-height: 1.6; }
+        .tut-desc { font-family: 'VT323', monospace; font-size: 24px; color: #e8d5f5; line-height: 1.5; }
+        .tut-nav { display: flex; gap: 15px; margin-top: 30px; }
+        .tut-btn { font-family: 'Press Start 2P', monospace; font-size: 10px; padding: 12px 22px; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+        .tut-skip { background: transparent; color: #666; border: 1px solid #333; }
+        .tut-next { background: linear-gradient(135deg, #e94560, #ff6b6b); color: #fff; }
+        @keyframes tutCardIn { 0%{opacity:0;transform:translateY(30px) scale(0.95)} 100%{opacity:1;transform:translateY(0) scale(1)} }
 
         /* ITEM INTERACTIONS */
         .petal {
@@ -1369,10 +1355,88 @@
             50% { opacity: 1; text-shadow: 0 0 10px rgba(29, 209, 161, 0.5); }
             100% { opacity: 0.7; }
         }
+        /* Update 1.3 Modal & Button */
+        .update-btn-floating {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: linear-gradient(45deg, #cc4400, #ff9ff3);
+            color: white;
+            border: 2px solid #feca57;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 0 15px rgba(254, 202, 87, 0.5);
+            animation: floatUpDown 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .update-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+        .update-modal-content {
+            background: #1a0a2e;
+            border: 3px solid #feca57;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(254, 202, 87, 0.3);
+            position: relative;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .update-modal h2 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 18px;
+            color: #feca57;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #feca57;
+        }
+        .update-modal p {
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            color: #e8d5f5;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .update-modal .highlight { color: #feca57; }
+        .update-modal .close-btn {
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 0 #8a2e3f;
+        }
+        .update-modal .close-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #8a2e3f;
+        }
     </style>
 
 
-    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body>
@@ -1383,6 +1447,8 @@
             <div class="nav-item-dropdown">
                 <a href="javascript:void(0)" class="nav-link"><span class="nav-emoji">🕹️</span><span class="nav-text">ARCADE ▼</span></a>
                 <div class="dropdown-menu">
+                    <a href="runner.html" class="dropdown-link"><span class="dropdown-emoji">🧚</span><span>RUNNER</span></a>
+                    <a href="blackjack.html" class="dropdown-link"><span class="dropdown-emoji">🃏</span><span>BLACKJACK</span></a>
                     <a href="fortune.html" class="dropdown-link"><span class="dropdown-emoji">🔮</span><span>PERAMAL</span></a>
                     <a href="fact.html" class="dropdown-link"><span class="dropdown-emoji">💡</span><span>FAKTA WOW</span></a>
                 </div>
@@ -1493,6 +1559,26 @@
     <audio id="bgm" loop src="bgm-home.mp3"></audio>
     <button id="bgmToggle" class="bgm-control" onclick="toggleBgm()" title="BGM Music">🔊</button>
 
+    <button class="update-btn-floating" onclick="document.getElementById('updateModal').style.display='flex'">
+        <span>✨</span> UPDATE 1.3
+    </button>
+
+    <div id="updateModal" class="update-modal" onclick="this.style.display='none'">
+        <div class="update-modal-content" onclick="event.stopPropagation()">
+            <h2>🎉 UPDATE 1.3 IS HERE!</h2>
+            <p>Halo Nanaz! Magic Vegas baru saja kedatangan <span class="highlight">2 GAME BARU</span> di bagian ARCADE lho!</p>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #48dbfb; text-align: left;">
+                <h3 style="font-family: 'Press Start 2P', monospace; font-size: 12px; color: #48dbfb; margin-bottom: 10px;">🃏 BLACKJACK NIGHT</h3>
+                <p style="font-size: 18px; margin-bottom: 0;">Lawan Koko si Koala Bandar dalam adu hoki mencapai angka 21! Jangan sampai tamak ya~</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #ff9ff3; text-align: left;">
+                <h3 style="font-family: 'Press Start 2P', monospace; font-size: 12px; color: #ff9ff3; margin-bottom: 10px;">🧚 FAIRY RUNNER</h3>
+                <p style="font-size: 18px; margin-bottom: 0;">Bantu peri kecil terbang menghindari awan gelap dan kumpulkan bintang untuk dapat ekstra koin!</p>
+            </div>
+            <p style="text-align: center; color: #feca57; font-size: 18px; margin-top: 20px;">Langsung cek di menu 🕹️ ARCADE sekarang!</p>
+            <button class="close-btn" onclick="document.getElementById('updateModal').style.display='none'">MANTAP!</button>
+        </div>
+    </div>
     <!-- ROSE MINI-GAME OVERLAY -->
     <div id="roseGameOverlay">
         <div class="big-rose-container" id="roseTrigger" onclick="clickRose()">
@@ -1547,14 +1633,14 @@
     if (!localStorage.getItem('introDone')) { window.location.href = 'intro.html'; }
 
     const dilanQuotes = [
-        "\"Selamat bertambah usia. Jangan terlalu cepat dewasa ya, segini aja terus.\" 🎂✨",
-        "\"Katanya kado terbaik itu kehadiran. Jadi, terimakasih sudah hadir di dunia ini!\" 🎁💖",
-        "\"Selamat ulang tahun. Semoga duniamu selalu secerah senyum yang sering kamu kasih ke awan-awan di atas sana.\" ☁️☀️",
-        "\"Nggak kerasa ya sudah setahun lagi. Tenang, aku nggak bakal bosen kok jadi orang yang bilang kamu makin tua.\" 😜🎉",
-        "\"Aku mungkin nggak serba bisa, tapi kalau cuma buat nemenin kamu ketawa seharian, aku rasa aku juaranya.\" 🏆😆",
-        "\"Kamu itu kayak lagu favorit; nggak pernah bosen didengar, dan selalu berhasil bikin suasana jadi lebih hidup.\" 🎵🎧",
-        "\"Nggak perlu jadi sempurna buat bikin sekelilingmu betah. Jadi kamu yang apa adanya aja udah lebih dari cukup buat aku xD.\" 💖✨",
-        "\"Semoga di usia ini kamu makin bahagia. Dan kalau butuh alasan buat senyum hari ini, panggil aku aja, oke?\" 📞😊"
+        "\"Aku nggak jago masak, nggak bisa nyetir, tapi kalau disuruh bikin kamu ketawa... aku jagonya.\" 🏆✨",
+        "\"Umurmu nambah, tapi pesonamu juga nambah... tetep jadi yang paling asik ya!\" 😍✨",
+        "\"Kamu itu kayak kembang api... berisik, ribet, tapi selalu bikin suasana jadi seru.\" 🎆🎆",
+        "\"Kamu tuh kayak diskon akhir tahun... bikin aku pengen deket terus biar nggak kehabisan asiknya.\" 💻📱💖",
+        "\"Selamat ulang tahun! Semoga rezekinya lancar, jodohnya deket... kalau bisa sih yang inisialnya sama kayak aku.\" 😜✨",
+        "\"Aku rela jadi kado ulang tahunmu. Tapi jangan dibuka ya, nanti kamu kaget lihat isinya keren banget.\" 🎁✨",
+        "\"Tambah tua gapapa, yang penting jangan tambah sombong ya. Nanti aku kangen nyebelin kamu lho.\" 😤😜💖",
+        "\"Hadiahnya? Rahasia dong. Tapi yang jelas, pertemanan sama aku itu hadiah paling mahal tahun ini, kan?\" 🎁😜🔥"
     ];
 
     let currentQuote = 0;
@@ -2476,36 +2562,16 @@ Perjanjian ini mungkin terdengar sederhana, namun seringkali kebahagiaan datang 
             const surprise = document.getElementById('surpriseOverlay');
             if (surprise) {
                 surprise.style.display = 'block';
-                // 0.8s Flash
                 const sf = document.getElementById('surpriseFlash'); if(sf) sf.style.animation='surpriseFlash 0.8s ease-out forwards';
-                
-                // Fullscreen Fireworks
                 launchFireworks();
-                
-                // Text bounce-in (starts at 0.4s, stays until 3.5s)
-                setTimeout(() => { 
-                    const st = document.getElementById('surpriseText'); 
-                    if (st) st.style.animation = 'surpriseTextIn 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards'; 
-                }, 400);
-
-                // Text fade-out (starts at 3.5s, ends around 4.1s)
-                setTimeout(() => { 
-                    const st = document.getElementById('surpriseText'); 
-                    if (st) st.style.animation = 'surpriseTextOut 0.6s ease-in forwards'; 
-                }, 3500);
-
-                // After surprise ends: show card or start onboarding
-                setTimeout(() => { 
-                    surprise.style.display = 'none'; 
-                    if (!localStorage.getItem('onboardingDone')) startOnboarding(); 
-                    else if (wrapper) { wrapper.style.display = 'flex'; wrapper.style.opacity = '1'; } 
-                }, 4200);
+                setTimeout(() => { const st = document.getElementById('surpriseText'); if (st) st.style.animation = 'surpriseTextIn 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards'; }, 400);
+                setTimeout(() => { const st = document.getElementById('surpriseText'); if (st) st.style.animation = 'surpriseTextOut 0.6s ease-in forwards'; }, 3500);
+                setTimeout(() => { surprise.style.display = 'none'; if (!localStorage.getItem('tutorialDone')) startTutorial(); else if (wrapper) { wrapper.style.display = 'flex'; wrapper.style.opacity = '1'; } }, 4200);
             }
-        } else if (!localStorage.getItem('onboardingDone')) {
+        } else if (!localStorage.getItem('tutorialDone')) {
             const wrapper = document.querySelector('.card-container'); if (wrapper) wrapper.style.display = 'none';
-            startOnboarding();
+            startTutorial();
         }
-
 
         if (localStorage.getItem('pendingRoyalScroll') === 'true') {
             console.log("Detecting pending royal scroll...");
@@ -2842,169 +2908,19 @@ Perjanjian ini mungkin terdengar sederhana, namun seringkali kebahagiaan datang 
     <script src="magic_global.js"></script>
     <script src="titah_system.js"></script>
     <script src="queen_interaction.js"></script>
-    <!-- REDESIGNED ONBOARDING SYSTEM -->
-    <div id="onboardingOverlay">
-        <div class="onboarding-particles" id="onboardingParticles"></div>
+    <!-- ONBOARDING OVERLAY -->
+    <div id="onboardingOverlay" class="onboarding-overlay">
         <div class="onboarding-card">
-            <div class="onboarding-header">
-                <span class="player-guide-label">PLAYER GUIDE</span>
-                <span class="onboarding-counter" id="onboardingCounter">[ 1 / 10 ]</span>
+            <div class="onboarding-img">✨ 🕹️ ✨</div>
+            <div class="onboarding-title">SELAMAT DATANG DI DUNIA VIRTUAL!</div>
+            <div class="onboarding-desc">
+                Akhirnya kamu sampai di sini, Naz!<br><br>
+                Di halaman utama ini, kamu bisa melihat ucapan kejutanmu.<br>
+                Gunakan <b>Navigation Bar</b> di atas untuk menjelajahi Toko, Game Slot, dan Sejarah hari lahirmu.<br><br>
+                Kumpulkan koin dan beli item spesial untuk mengaktifkan efek rahasia!
             </div>
-            <div class="onboarding-progress-bar">
-                <div class="onboarding-prog-fill" id="onboardingProgFill"></div>
-            </div>
-            <div id="onboardingStep">
-                <!-- Content injected via JS -->
-            </div>
-            <div class="onboarding-nav">
-                <button class="onboarding-btn" id="skipOnboarding" onclick="closeOnboarding()">LEWATI</button>
-                <button class="onboarding-btn" id="nextOnboarding" onclick="nextOnboardingStep()">LANJUT</button>
-            </div>
+            <button class="onboarding-btn" onclick="closeOnboarding()">SIAP, JELAJAHI! ▸</button>
         </div>
     </div>
-
-    <script>
-        let currentOnboardingStep = 0;
-        const onboardingSteps = [
-            {
-                title: "SELAMAT DATANG, NAZ",
-                emoji: "✨",
-                desc: "Ini adalah dunia kecil yang aku buat untukmu.<br><br>Tujuanmu:<br>✨ Kumpulkan semua surat<br>🎁 Miliki semua item<br>🎵 Buka semua lagu<br><br>Dan lihat apa yang menunggumu di akhir."
-            },
-            {
-                title: "SLOT MACHINE",
-                emoji: "🎰",
-                desc: "Tempat utama kamu bermain.<br><br>Putar slot untuk mendapatkan koin<br>dan menemukan surat rahasia."
-            },
-            {
-                title: "GIFT SHOP",
-                emoji: "🛒",
-                desc: "Gunakan koin untuk membeli item.<br><br>Setiap item punya efek unik,<br>dari yang lucu sampai yang cukup spesial."
-            },
-            {
-                title: "KOLEKSI HADIAH",
-                emoji: "🎒",
-                desc: "Item yang sudah kamu beli<br>bisa ditemukan di halaman Shop.<br><br>Scroll ke bawah sampai bagian:<br>“Koleksi Hadiah Kamu”<br><br>Di sana kamu bisa menggunakan item<br>dan menikmati efeknya."
-            },
-            {
-                title: "KOLEKSI ITEM",
-                emoji: "🎁",
-                desc: "Semua item yang kamu miliki<br>akan masuk ke progres koleksi.<br><br>Kumpulkan semuanya<br>untuk membuka sesuatu."
-            },
-            {
-                title: "KOLEKSI SURAT",
-                emoji: "💌",
-                desc: "Ada 25 surat yang bisa kamu kumpulkan.<br><br>Jika semuanya terkumpul,<br>surat terakhir akan terbuka."
-            },
-            {
-                title: "MUSIC BOX",
-                emoji: "🎵",
-                desc: "Buka semua lagu<br>untuk mendapatkan Piringan Emas.<br><br>Setelah itu,<br>musik bisa diputar dari mana saja."
-            },
-            {
-                title: "ARCADE",
-                emoji: "🎮",
-                desc: "Ada Fortune Teller<br>dan Fakta Wow.<br><br>Isinya ringan,<br>aneh,<br>tapi semoga menyenangkan."
-            },
-            {
-                title: "SEJARAH 10 APRIL",
-                emoji: "📜",
-                desc: "Tanggal lahirmu punya cerita.<br><br>Ada beberapa peristiwa dunia<br>yang terjadi di hari yang sama."
-            },
-            {
-                title: "FINAL REWARD",
-                emoji: "🎁",
-                desc: "Jika semua surat dan item terkumpul,<br><br>akan ada sesuatu di akhir.<br><br>Bukan sesuatu yang besar,<br>tapi sesuatu yang jujur."
-            }
-        ];
-
-        function startOnboarding() {
-            const overlay = document.getElementById('onboardingOverlay');
-            overlay.style.display = 'flex';
-            currentOnboardingStep = 0;
-            
-            // Particles
-            const pContainer = document.getElementById('onboardingParticles');
-            if (pContainer) {
-                pContainer.innerHTML = '';
-                for(let i=0; i<15; i++) {
-                    const p = document.createElement('div');
-                    p.style.cssText = `position:absolute; width:2px; height:2px; background:#28eaff; left:${Math.random()*100}%; top:${Math.random()*100}%; border-radius:50%; opacity:${0.1+Math.random()*0.3}; animation: floatUpDown ${3+Math.random()*4}s infinite;`;
-                    pContainer.appendChild(p);
-                }
-            }
-            
-            renderOnboardingStep();
-        }
-
-        function renderOnboardingStep() {
-            const step = onboardingSteps[currentOnboardingStep];
-            const container = document.getElementById('onboardingStep');
-            const fill = document.getElementById('onboardingProgFill');
-            const counter = document.getElementById('onboardingCounter');
-            const nextBtn = document.getElementById('nextOnboarding');
-
-            if (!container) return;
-
-            // Animation
-            container.classList.add('step-exit');
-            
-            setTimeout(() => {
-                container.innerHTML = `
-                    <span class="onboarding-emoji">${step.emoji}</span>
-                    <h2 class="onboarding-title">${step.title}</h2>
-                    <p class="onboarding-desc">${step.desc}</p>
-                `;
-                
-                if (counter) counter.textContent = `[ ${currentOnboardingStep + 1} / ${onboardingSteps.length} ]`;
-                if (fill) fill.style.width = ((currentOnboardingStep + 1) / onboardingSteps.length * 100) + '%';
-                
-                if (nextBtn) {
-                    if (currentOnboardingStep === onboardingSteps.length - 1) {
-                        nextBtn.textContent = "MULAI PERJALANAN";
-                    } else {
-                        nextBtn.textContent = "LANJUT";
-                    }
-                }
-
-                container.classList.remove('step-exit');
-                container.classList.add('step-enter');
-                setTimeout(() => container.classList.remove('step-enter'), 50);
-            }, 350);
-        }
-
-        function nextOnboardingStep() {
-            if (currentOnboardingStep < onboardingSteps.length - 1) {
-                currentOnboardingStep++;
-                renderOnboardingStep();
-                if(window.playSFX) playSFX([400, 600], 'sine', 0.1, 0.05);
-            } else {
-                closeOnboarding();
-            }
-        }
-
-        function closeOnboarding() {
-            localStorage.setItem('onboardingDone', 'true');
-            // Signal shop to highlight inventory next time
-            localStorage.setItem('highlightInventory', 'true');
-            
-            const overlay = document.getElementById('onboardingOverlay');
-            if (overlay) {
-                overlay.style.opacity = '0';
-                overlay.style.transition = 'opacity 0.5s ease';
-                
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    const wrapper = document.querySelector('.card-container');
-                    if (wrapper) {
-                        wrapper.style.display = 'flex';
-                        wrapper.style.opacity = '1';
-                        wrapper.style.transition = 'opacity 0.5s ease';
-                    }
-                }, 500);
-            }
-            if(window.playSFX) playSFX([600, 400], 'sine', 0.1, 0.05);
-        }
-    </script>
 </body>
 </html>
