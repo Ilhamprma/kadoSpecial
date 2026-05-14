@@ -16,6 +16,8 @@ export default defineConfig({
         fortune: resolve(__dirname, 'fortune.html'),
         history: resolve(__dirname, 'history.html'),
         letters: resolve(__dirname, 'letters.html'),
+        blackjack: resolve(__dirname, 'blackjack.html'),
+        runner: resolve(__dirname, 'runner.html'),
       }
     }
   }
