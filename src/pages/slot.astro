@@ -1712,17 +1712,6 @@
         }
         .dev-btn-cancel:hover { background: rgba(255, 255, 255, 0.15); color: #fff; border-color: #fff; }
     </style>
-        <!-- teks mentah warisan (tanpa <script> pembuka di sumber): dibiarkan inert seperti di hosting sekarang; kurung kurawal di-escape agar lolos compiler -->
-        // Magic cursor - handled by top-level initCursor, no duplicate needed
-        (function () &#123;
-            const isLuckyActive = localStorage.getItem('isLuckyActive') === 'true';
-            if (isLuckyActive) &#123;
-                window.addEventListener('load', () => &#123;
-                    const cd = document.getElementById('coinDisplay');
-                    if (cd) cd.classList.add('lucky-glow');
-                &#125;)&#125;;
-            &#125;
-        &#125;)&#125;();
 
 </head>
 
