@@ -4,6 +4,15 @@
  */
 
 (function() {
+    // One-time coin migration: normalize every save (old or new) to 100,
+    // then reload once so pages boot with the migrated value.
+    try {
+        if (localStorage.getItem('coinResetV1') !== 'done') {
+            localStorage.setItem('slotCoins', '100');
+            localStorage.setItem('coinResetV1', 'done');
+            window.location.reload();
+        }
+    } catch (e) {}
     // 0. Global Setup
     const path = window.location.pathname.toLowerCase();
     const isIntroPage = path.includes('intro.html');
