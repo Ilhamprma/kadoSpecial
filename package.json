@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "astro dev",
+    "build": "astro build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "astro preview"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
+    "astro": "^7.3.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
