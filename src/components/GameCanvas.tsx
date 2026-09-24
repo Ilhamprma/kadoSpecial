@@ -24,8 +24,8 @@ const GameCanvas = () => {
     }, []);
 
     const handleRestart = () => {
-        engineRef.current?.start();
-        // The start method resets the game state internally and calls callbacks
+        // restart() only resets state; the game loop is still running.
+        engineRef.current?.restart();
     };
 
     return (

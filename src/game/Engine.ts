@@ -35,6 +35,8 @@ export class Engine {
     onScoreChange: (score: number) => void;
     onGameOver: (gameOver: boolean) => void;
 
+    private stars: { x: number; y: number }[] = [];
+
     constructor(
         canvas: HTMLCanvasElement,
         onScoreChange: (score: number) => void,
@@ -50,8 +52,15 @@ export class Engine {
         if (!context) throw new Error("Could not get 2D context");
         this.ctx = context;
 
-        this.input = new InputHandler();
+        this.input = new InputHandler(canvas);
         this.player = new Player(this.input);
+
+        for (let i = 0; i < 60; i++) {
+            this.stars.push({
+                x: Math.random() * CANVAS_WIDTH,
+                y: Math.random() * CANVAS_HEIGHT,
+            });
+        }
     }
 
     start() {
@@ -61,6 +70,12 @@ export class Engine {
         this.onGameOver(false);
         this.lastTime = performance.now();
         this.loop(this.lastTime);
+    }
+
+    restart() {
+        // The rAF loop keeps running while gameOver is true, so a restart
+        // only needs to reset state — never start a second loop.
+        this.reset();
     }
 
     reset() {
@@ -160,12 +175,10 @@ export class Engine {
         this.ctx.fillStyle = '#000010';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Starfield
+        // Starfield (fixed positions generated once — never random per frame)
         this.ctx.fillStyle = '#fff';
-        for (let i = 0; i < 20; i++) {
-            // Using a simple pseudo-random based on time would flicker, needs persistent stars. 
-            // For now just random static noise
-            this.ctx.fillRect(Math.random() * CANVAS_WIDTH, Math.random() * CANVAS_HEIGHT, 1, 1);
+        for (const star of this.stars) {
+            this.ctx.fillRect(star.x, star.y, 1, 1);
         }
 
         this.particles.forEach(p => p.draw(this.ctx));
