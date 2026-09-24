@@ -3,19 +3,47 @@ export class InputHandler {
     mouseX: number = 0;
     mouseY: number = 0;
     mouseDown: boolean = false;
+    private canvas: HTMLCanvasElement | null = null;
 
-    constructor() {
-        window.addEventListener('keydown', (e) => this.keys.add(e.code));
-        window.addEventListener('keyup', (e) => this.keys.delete(e.code));
-        window.addEventListener('mousemove', (e) => {
-            // Need to account for canvas position if not full screen, 
-            // but for now we assume full screen or use clientX/Y
-            this.mouseX = e.clientX;
-            this.mouseY = e.clientY;
-        });
-        window.addEventListener('mousedown', () => this.mouseDown = true);
-        window.addEventListener('mouseup', () => this.mouseDown = false);
+    constructor(canvas?: HTMLCanvasElement) {
+        if (canvas) this.canvas = canvas;
+        window.addEventListener('keydown', this.handleKeyDown);
+        window.addEventListener('keyup', this.handleKeyUp);
+        window.addEventListener('mousemove', this.handleMouseMove);
+        window.addEventListener('mousedown', this.handleMouseDown);
+        window.addEventListener('mouseup', this.handleMouseUp);
     }
+
+    private handleKeyDown = (e: KeyboardEvent): void => {
+        this.keys.add(e.code);
+    };
+
+    private handleKeyUp = (e: KeyboardEvent): void => {
+        this.keys.delete(e.code);
+    };
+
+    private handleMouseMove = (e: MouseEvent): void => {
+        if (this.canvas) {
+            // Map viewport coords to canvas coords so the player follows
+            // the cursor correctly even when the canvas is offset or scaled.
+            const rect = this.canvas.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+                this.mouseX = (e.clientX - rect.left) * (this.canvas.width / rect.width);
+                this.mouseY = (e.clientY - rect.top) * (this.canvas.height / rect.height);
+                return;
+            }
+        }
+        this.mouseX = e.clientX;
+        this.mouseY = e.clientY;
+    };
+
+    private handleMouseDown = (): void => {
+        this.mouseDown = true;
+    };
+
+    private handleMouseUp = (): void => {
+        this.mouseDown = false;
+    };
 
     isDown(code: string): boolean {
         return this.keys.has(code);
@@ -34,10 +62,10 @@ export class InputHandler {
     }
 
     cleanup() {
-        window.removeEventListener('keydown', (e) => this.keys.add(e.code));
-        window.removeEventListener('keyup', (e) => this.keys.delete(e.code));
-        // Note: Event listener removal for anonymous functions is tricky. 
-        // In a real app we'd bind them, but for this simple game it's okay 
-        // as the input handler usually lives as long as the page.
+        window.removeEventListener('keydown', this.handleKeyDown);
+        window.removeEventListener('keyup', this.handleKeyUp);
+        window.removeEventListener('mousemove', this.handleMouseMove);
+        window.removeEventListener('mousedown', this.handleMouseDown);
+        window.removeEventListener('mouseup', this.handleMouseUp);
     }
 }
