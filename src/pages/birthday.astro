@@ -1703,8 +1703,8 @@
 
     function updateNavCoins() {
         let savedCoins = localStorage.getItem('slotCoins');
-        let coinAmt = savedCoins !== null ? parseInt(savedCoins, 10) : 999;
-        const display = document.getElementById('navCoinDisplay'); if (display) display.textContent = isNaN(coinAmt) ? 999 : coinAmt;
+        let coinAmt = savedCoins !== null ? parseInt(savedCoins, 10) : 100;
+        const display = document.getElementById('navCoinDisplay'); if (display) display.textContent = isNaN(coinAmt) ? 100 : coinAmt;
     }
 
     function renderShelf() {

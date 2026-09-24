@@ -2471,8 +2471,8 @@
         };
 
         let storedCoins = localStorage.getItem('slotCoins');
-        let coins = storedCoins !== null ? parseInt(storedCoins, 10) : 999;
-        if (isNaN(coins)) coins = 999;
+        let coins = storedCoins !== null ? parseInt(storedCoins, 10) : 100;
+        if (isNaN(coins)) coins = 100;
         let bet = 10, isSpinning = false;
 
         function saveCoins() { localStorage.setItem('slotCoins', coins) }
@@ -2491,8 +2491,8 @@
         window.addEventListener('storage', (e) => {
             if (e.key === 'slotCoins') {
                 const stored = localStorage.getItem('slotCoins');
-                coins = stored !== null ? parseInt(stored, 10) : 999;
-                if (isNaN(coins)) coins = 999;
+                coins = stored !== null ? parseInt(stored, 10) : 100;
+                if (isNaN(coins)) coins = 100;
                 updateUI();
             }
         });

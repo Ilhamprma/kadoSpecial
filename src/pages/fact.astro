@@ -606,7 +606,7 @@
             epic: parseInt(localStorage.getItem('fact_stat_epic') || '0'),
             streak: parseInt(localStorage.getItem('fact_stat_streak') || '0')
         };
-        let coins = parseInt(localStorage.getItem('slotCoins') || '999');
+        let coins = parseInt(localStorage.getItem('slotCoins') || '100');
         const COST = 50;
 
         function pickRarity() {
@@ -892,7 +892,7 @@
         }
 
         window.onload = () => {
-            document.getElementById('coinDisplay').textContent = localStorage.getItem('slotCoins') || '999';
+            document.getElementById('coinDisplay').textContent = localStorage.getItem('slotCoins') || '100';
             
             // Fade in side panels
             setTimeout(() => {
