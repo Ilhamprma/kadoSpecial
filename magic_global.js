@@ -243,6 +243,14 @@
     const sfxPop = new Audio("https://assets.mixkit.co/active_storage/sfx/1432/1432-preview.mp3");
     const sfxMagic = new Audio("https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3");
 
+    function playSfx(audio) {
+        if (!audio || typeof audio.play !== 'function') return;
+        try {
+            const played = audio.play();
+            if (played && typeof played.catch === 'function') played.catch(function() {});
+        } catch (e) {}
+    }
+
     // 2. DOM Node Generation
     const overlay = document.createElement('div');
     overlay.id = 'fairyOverlay';
@@ -340,7 +348,7 @@
         overlay.style.display = 'flex';
         setTimeout(() => overlay.classList.add('active'), 100);
 
-        try { sfxPop.play(); } catch(e){}
+        playSfx(sfxPop);
 
         setTimeout(() => {
             phase = 'popup';
@@ -387,7 +395,7 @@
         const startY = window.innerHeight / 2;
         let pct = 0;
 
-        try { sfxMagic.play(); } catch(e){}
+        playSfx(sfxMagic);
 
         const flightInterval = setInterval(() => {
             pct += 0.05;

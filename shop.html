@@ -5556,7 +5556,7 @@ Perjanjian ini mungkin terdengar sederhana, namun seringkali kebahagiaan datang 
             if (unlocked.length >= 10) {
                 if (localStorage.getItem('goldenRecordUnlocked') !== 'true') {
                     localStorage.setItem('goldenRecordUnlocked', 'true');
-                    openGoldenRecordPopup();
+                    if (typeof window.openGoldenRecordPopup === 'function') window.openGoldenRecordPopup();
                 }
             }
         }
